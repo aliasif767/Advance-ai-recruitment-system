@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IARS — Recruitment Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0C0C0E;--surface:#141417;--surface2:#1C1C21;--surface3:#242429;
+  --border:#2A2A32;--border2:#363640;
+  --text:#F0EFE8;--text2:#9B9A94;--text3:#5A5A62;
+  --gold:#C8A96E;--gold2:#E8C98A;--gold-dim:#7A6540;
+  --green:#3DB87A;--green-dim:#1A4A32;--green-bg:#0F2A1E;
+  --red:#E05555;--red-dim:#5A2020;--red-bg:#2A1010;
+  --blue:#5B9CF6;--blue-dim:#1A3060;--blue-bg:#0D1E3D;
+  --amber:#E8A830;--amber-dim:#6B4A0E;
+  --r:10px;--rl:16px;
+}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;min-height:100vh;overflow-x:hidden}
+.shell{display:grid;grid-template-columns:220px 1fr;min-height:100vh}
+
+/* SIDEBAR */
+.sidebar{background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
+.logo{padding:24px 20px 20px;border-bottom:1px solid var(--border)}
+.logo-mark{font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--gold2)}
+.logo-sub{font-size:10px;color:var(--text3);letter-spacing:2px;text-transform:uppercase;margin-top:2px;font-family:'DM Mono',monospace}
+.nav{padding:16px 0;flex:1;overflow-y:auto}
+.nav-sec{padding:0 12px;margin-bottom:4px}
+.nav-lbl{font-size:10px;color:var(--text3);letter-spacing:2px;text-transform:uppercase;font-family:'DM Mono',monospace;padding:8px 8px 6px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:8px;cursor:pointer;transition:all .15s;color:var(--text2);font-size:13px;border:1px solid transparent;margin-bottom:2px;user-select:none}
+.nav-item:hover{background:var(--surface2);color:var(--text)}
+.nav-item.active{background:var(--surface3);color:var(--gold2);border-color:var(--border)}
+.nav-icon{width:16px;height:16px;opacity:.7;flex-shrink:0}
+.nav-item.active .nav-icon{opacity:1}
+.nav-badge{margin-left:auto;background:var(--gold-dim);color:var(--gold2);font-size:10px;font-family:'DM Mono',monospace;padding:2px 6px;border-radius:20px}
+.sb-footer{padding:16px;border-top:1px solid var(--border)}
+.avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--gold-dim),var(--gold));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:var(--bg)}
+
+/* MAIN */
+.main{display:flex;flex-direction:column;min-height:100vh;overflow:hidden}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:10}
+.topbar-title{font-family:'Fraunces',serif;font-size:20px;font-weight:300}
+.topbar-title span{color:var(--gold2)}
+.topbar-r{display:flex;align-items:center;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:8px 16px;border-radius:8px;font-size:13px;cursor:pointer;transition:all .15s;font-family:'DM Sans',sans-serif;border:none;white-space:nowrap}
+.btn-ghost{background:transparent;border:1px solid var(--border2);color:var(--text2)}
+.btn-ghost:hover{border-color:var(--border);color:var(--text)}
+.btn-gold{background:var(--gold);color:var(--bg);font-weight:500}
+.btn-gold:hover{background:var(--gold2)}
+.btn-danger{background:var(--red-bg);border:1px solid var(--red-dim);color:var(--red)}
+.btn-sm{padding:5px 12px;font-size:12px}
+.pill-badge{display:flex;align-items:center;gap:6px;border-radius:20px;padding:5px 12px;font-size:11px;font-family:'DM Mono',monospace}
+.pill-active{background:var(--green-bg);border:1px solid var(--green-dim);color:var(--green)}
+.pill-loading{background:var(--blue-bg);border:1px solid var(--blue-dim);color:var(--blue)}
+.pulse{width:6px;height:6px;border-radius:50%;background:currentColor;animation:pulse 2s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* PAGES */
+.page{display:none;padding:24px 28px;overflow-y:auto;flex:1}
+.page.active{display:block}
+
+/* KPI */
+.kpi-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:24px}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:18px 20px;position:relative;overflow:hidden;transition:border-color .2s}
+.kpi:hover{border-color:var(--border2)}
+.kpi-accent{position:absolute;top:0;left:0;right:0;height:2px}
+.kpi-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:1.5px;font-family:'DM Mono',monospace;margin-bottom:10px}
+.kpi-value{font-family:'Fraunces',serif;font-size:32px;font-weight:600;line-height:1;margin-bottom:6px}
+.kpi-sub{font-size:11px;color:var(--text3)}
+.kpi-up{color:var(--green)}
+
+/* GRID */
+.grid-2{display:grid;grid-template-columns:1fr 380px;gap:16px;margin-bottom:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.col-r{display:flex;flex-direction:column;gap:16px}
+
+/* CARD */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden}
+.card-hdr{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--border)}
+.card-title{font-size:14px;font-weight:500;display:flex;align-items:center;gap:8px}
+.dot{width:6px;height:6px;border-radius:50%}
+.tabs{display:flex;gap:4px}
+.tab{padding:5px 12px;border-radius:6px;font-size:12px;cursor:pointer;border:1px solid transparent;color:var(--text2);transition:all .15s;font-family:'DM Mono',monospace}
+.tab:hover{color:var(--text)}
+.tab.active{background:var(--surface3);border-color:var(--border);color:var(--text)}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse}
+thead th{padding:10px 20px;text-align:left;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1.5px;font-family:'DM Mono',monospace;font-weight:400;border-bottom:1px solid var(--border)}
+tbody tr{border-bottom:1px solid var(--border);transition:background .12s;cursor:pointer}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:var(--surface2)}
+tbody td{padding:13px 20px;vertical-align:middle}
+.cname{font-weight:500;font-size:13px;margin-bottom:2px}
+.crole{font-size:11px;color:var(--text3)}
+.sb-wrap{display:flex;align-items:center;gap:10px}
+.sb-bg{flex:1;height:4px;background:var(--surface3);border-radius:2px;overflow:hidden;max-width:80px}
+.sb-fill{height:100%;border-radius:2px;transition:width .5s}
+.snum{font-family:'DM Mono',monospace;font-size:12px;font-weight:500;min-width:28px}
+.badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:11px;font-family:'DM Mono',monospace;font-weight:500}
+.bm{background:var(--green-bg);color:var(--green);border:1px solid var(--green-dim)}
+.bmy{background:var(--amber-dim);color:var(--amber);border:1px solid #5A3A00}
+.bn{background:var(--red-bg);color:var(--red);border:1px solid var(--red-dim)}
+.tag{display:inline-block;background:var(--surface3);border:1px solid var(--border);color:var(--text2);font-size:10px;padding:2px 7px;border-radius:4px;margin:1px;font-family:'DM Mono',monospace}
+.act-btn{background:transparent;border:1px solid var(--border);color:var(--text2);padding:4px 10px;border-radius:6px;cursor:pointer;font-size:11px;transition:all .15s}
+.act-btn:hover{border-color:var(--gold-dim);color:var(--gold2)}
+
+/* FUNNEL */
+.funnel-body{padding:18px 20px}
+.frow{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.flbl{font-size:12px;color:var(--text2);width:80px;text-align:right;flex-shrink:0}
+.fbar-bg{flex:1;height:26px;background:var(--surface2);border-radius:6px;overflow:hidden}
+.fbar{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:10px;font-size:11px;font-weight:500;font-family:'DM Mono',monospace;transition:width .8s ease}
+.fcnt{font-family:'DM Mono',monospace;font-size:12px;color:var(--text3);width:32px;text-align:right;flex-shrink:0}
+
+/* ACTIVITY */
+.feed-item{display:flex;gap:12px;padding:13px 18px;border-bottom:1px solid var(--border)}
+.feed-item:last-child{border-bottom:none}
+.fdot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:4px;border:2px solid var(--bg)}
+.ftext{font-size:12px;color:var(--text2);line-height:1.5}
+.ftext strong{color:var(--text);font-weight:500}
+.ftime{font-size:10px;color:var(--text3);font-family:'DM Mono',monospace;margin-top:2px}
+
+/* SKILLS GRID */
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:14px 18px}
+.skill-cell{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 8px;text-align:center}
+.skill-name{font-size:10px;color:var(--text3);font-family:'DM Mono',monospace;margin-bottom:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.skill-bar-wrap{height:3px;border-radius:2px;background:rgba(255,255,255,.06);overflow:hidden;margin-bottom:4px}
+.skill-bar{height:100%;border-radius:2px}
+.skill-pct{font-size:12px;font-weight:500;font-family:'DM Mono',monospace}
+
+/* CHART WRAP */
+.chart-body{padding:18px 20px}
+
+/* DRAWER */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:99;opacity:0;pointer-events:none;transition:opacity .25s}
+.overlay.open{opacity:1;pointer-events:all}
+.drawer{position:fixed;right:0;top:0;bottom:0;width:420px;background:var(--surface);border-left:1px solid var(--border);transform:translateX(100%);transition:transform .3s ease;z-index:100;display:flex;flex-direction:column}
+.drawer.open{transform:translateX(0)}
+.drawer-hdr{padding:20px 22px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;flex-shrink:0}
+.drawer-body{flex:1;overflow-y:auto;padding:20px 22px}
+.dname{font-family:'Fraunces',serif;font-size:22px;font-weight:300;margin-bottom:3px}
+.drole{font-size:12px;color:var(--text3)}
+.close-btn{background:none;border:1px solid var(--border);color:var(--text2);width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s}
+.close-btn:hover{color:var(--text);border-color:var(--border2)}
+.score-card{display:flex;gap:16px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--rl);padding:18px;margin:14px 0}
+.sec-title{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1.5px;font-family:'DM Mono',monospace;margin:16px 0 8px}
+.eval-row{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+.eval-lbl{font-size:12px;color:var(--text2);width:130px;flex-shrink:0}
+.eval-bar-bg{flex:1;height:4px;background:var(--surface3);border-radius:2px;overflow:hidden}
+.eval-bar{height:100%;border-radius:2px}
+.eval-n{font-family:'DM Mono',monospace;font-size:11px;color:var(--text2);width:24px;text-align:right}
+.str-item{display:flex;align-items:flex-start;gap:7px;font-size:12px;color:var(--text2);line-height:1.4;margin-bottom:5px}
+.str-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.email-box{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r);padding:13px;font-size:11px;color:var(--text2);line-height:1.6;white-space:pre-wrap;font-family:'DM Mono',monospace;max-height:160px;overflow-y:auto}
+.copy-btn{width:100%;margin-top:8px;padding:9px;background:var(--gold);color:var(--bg);border:none;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;transition:background .15s;font-family:'DM Sans',sans-serif}
+.copy-btn:hover{background:var(--gold2)}
+.send-btn{width:100%;margin-top:6px;padding:9px;background:transparent;color:var(--green);border:1px solid var(--green-dim);border-radius:8px;font-size:13px;cursor:pointer;transition:all .15s;font-family:'DM Sans',sans-serif}
+.send-btn:hover{background:var(--green-bg)}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:28px;width:480px;max-width:95vw}
+.modal-title{font-family:'Fraunces',serif;font-size:20px;font-weight:300;margin-bottom:20px;color:var(--gold2)}
+.form-group{margin-bottom:14px}
+.form-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;font-family:'DM Mono',monospace;margin-bottom:6px;display:block}
+.form-input{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:10px 12px;border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;transition:border-color .15s;outline:none}
+.form-input:focus{border-color:var(--gold-dim)}
+.form-input::placeholder{color:var(--text3)}
+select.form-input{cursor:pointer}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.modal-footer{display:flex;gap:10px;justify-content:flex-end;margin-top:20px}
+.checkbox-row{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);margin-bottom:8px}
+input[type=checkbox]{accent-color:var(--gold);width:15px;height:15px;cursor:pointer}
+
+/* UPLOAD ZONE */
+.upload-zone{border:1.5px dashed var(--border2);border-radius:var(--r);padding:24px;text-align:center;cursor:pointer;transition:all .2s;margin-bottom:12px}
+.upload-zone:hover,.upload-zone.drag{border-color:var(--gold-dim);background:rgba(200,169,110,.05)}
+.upload-zone input{display:none}
+
+/* TOAST */
+.toast-wrap{position:fixed;bottom:24px;right:24px;display:flex;flex-direction:column;gap:8px;z-index:999}
+.toast{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:13px;display:flex;align-items:center;gap:10px;min-width:280px;animation:slideIn .25s ease;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.toast.success{border-color:var(--green-dim);color:var(--green)}
+.toast.error{border-color:var(--red-dim);color:var(--red)}
+.toast.info{border-color:var(--blue-dim);color:var(--blue)}
+@keyframes slideIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{animation:fadeIn .3s ease forwards}
+
+/* JOBS PAGE */
+.jobs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:16px}
+.job-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:20px;transition:border-color .15s;cursor:pointer}
+.job-card:hover{border-color:var(--border2)}
+.job-title{font-family:'Fraunces',serif;font-size:17px;font-weight:300;margin-bottom:4px}
+.job-company{font-size:12px;color:var(--text3);margin-bottom:12px}
+.job-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.job-tag{background:var(--surface2);border:1px solid var(--border);color:var(--text2);font-size:10px;padding:3px 8px;border-radius:4px;font-family:'DM Mono',monospace}
+.job-status-posted{color:var(--green);background:var(--green-bg);border-color:var(--green-dim)}
+.job-status-draft{color:var(--text3);background:var(--surface3)}
+.job-actions{display:flex;gap:8px;margin-top:12px}
+
+/* EMPTY STATE */
+.empty{padding:48px;text-align:center;color:var(--text3)}
+.empty-icon{font-size:32px;margin-bottom:12px;opacity:.5}
+.empty-text{font-size:14px}
+
+/* LOADING SPINNER */
+.spinner{display:inline-block;width:14px;height:14px;border:2px solid var(--border2);border-top-color:var(--gold);border-radius:50%;animation:spin .6s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* RUNS TABLE */
+.run-status-running{color:var(--blue)}
+.run-status-completed{color:var(--green)}
+.run-status-failed{color:var(--red)}
+
+/* RESPONSIVE */
+@media(max-width:1100px){.kpi-strip{grid-template-columns:repeat(3,1fr)}.grid-2{grid-template-columns:1fr}}
+@media(max-width:768px){.shell{grid-template-columns:1fr}.sidebar{display:none}}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="logo">
+    <div class="logo-mark">IARS</div>
+    <div class="logo-sub">Recruitment AI</div>
+  </div>
+  <nav class="nav">
+    <div class="nav-sec">
+      <div class="nav-lbl">Pipeline</div>
+      <div class="nav-item active" data-page="dashboard">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="6" height="6" rx="1.5" fill="currentColor"/><rect x="9" y="1" width="6" height="6" rx="1.5" fill="currentColor" opacity=".5"/><rect x="1" y="9" width="6" height="6" rx="1.5" fill="currentColor" opacity=".5"/><rect x="9" y="9" width="6" height="6" rx="1.5" fill="currentColor" opacity=".3"/></svg>
+        Dashboard
+      </div>
+      <div class="nav-item" data-page="candidates">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M2 14c0-3.314 2.686-5 6-5s6 1.686 6 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Candidates
+        <span class="nav-badge" id="navCandCount">—</span>
+      </div>
+      <div class="nav-item" data-page="jobs">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="10" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M5 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="1.5"/></svg>
+        Jobs
+        <span class="nav-badge" id="navJobCount">—</span>
+      </div>
+      <div class="nav-item" data-page="pipeline">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Pipeline Runs
+      </div>
+    </div>
+    <div class="nav-sec">
+      <div class="nav-lbl">Actions</div>
+      <div class="nav-item" onclick="openJobModal()">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        New Job
+      </div>
+      <div class="nav-item" onclick="openScoreModal()">
+        <svg class="nav-icon" viewBox="0 0 16 16" fill="none"><path d="M4 12V4l4 3 4-3v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Score CV
+      </div>
+    </div>
+  </nav>
+  <div class="sb-footer">
+    <div style="display:flex;align-items:center;gap:10px">
+      <div class="avatar" style="flex-shrink:0">HR</div>
+      <div><div style="font-size:13px;font-weight:500">HR Admin</div><div style="font-size:11px;color:var(--text3)">Recruitment Lead</div></div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-title" id="topbarTitle">Recruitment <span>Dashboard</span></div>
+    <div class="topbar-r">
+      <div class="pill-badge pill-active" id="statusPill"><span class="pulse"></span><span id="statusText">Live</span></div>
+      <button class="btn btn-ghost" onclick="refreshAll()"><div class="spinner" id="refreshSpinner" style="display:none"></div><svg width="13" height="13" viewBox="0 0 16 16" fill="none" id="refreshIcon"><path d="M3 8a5 5 0 0110 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M13 8l-1-2M13 8l-2-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>Refresh</button>
+      <button class="btn btn-gold" onclick="openJobModal()"><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>New Job</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════ DASHBOARD PAGE ══════════════════ -->
+  <div class="page active" id="page-dashboard">
+
+    <!-- KPI STRIP -->
+    <div class="kpi-strip" id="kpiStrip">
+      <div class="kpi"><div class="kpi-accent" style="background:var(--gold)"></div><div class="kpi-label">CVs Processed</div><div class="kpi-value" style="color:var(--gold2)" id="kpiCvs">—</div><div class="kpi-sub" id="kpiCvsSub">Loading…</div></div>
+      <div class="kpi"><div class="kpi-accent" style="background:var(--green)"></div><div class="kpi-label">Matched</div><div class="kpi-value" style="color:var(--green)" id="kpiMatched">—</div><div class="kpi-sub" id="kpiMatchSub">—</div></div>
+      <div class="kpi"><div class="kpi-accent" style="background:var(--amber)"></div><div class="kpi-label">Maybe</div><div class="kpi-value" style="color:var(--amber)" id="kpiMaybe">—</div><div class="kpi-sub">Pending HR review</div></div>
+      <div class="kpi"><div class="kpi-accent" style="background:var(--blue)"></div><div class="kpi-label">Interviews</div><div class="kpi-value" style="color:var(--blue)" id="kpiInterviews">—</div><div class="kpi-sub" id="kpiIntSub">—</div></div>
+      <div class="kpi"><div class="kpi-accent" style="background:var(--text3)"></div><div class="kpi-label">Time Saved</div><div class="kpi-value" id="kpiTimeSaved">—</div><div class="kpi-sub">vs manual process</div></div>
+    </div>
+
+    <!-- MAIN GRID -->
+    <div class="grid-2">
+      <!-- CANDIDATE TABLE -->
+      <div class="card fade-in">
+        <div class="card-hdr">
+          <div class="card-title"><div class="dot" style="background:var(--gold)"></div>Candidate Rankings</div>
+          <div class="tabs">
+            <div class="tab active" onclick="filterCands('all',this)">All</div>
+            <div class="tab" onclick="filterCands('MATCH',this)">Match</div>
+            <div class="tab" onclick="filterCands('MAYBE',this)">Maybe</div>
+            <div class="tab" onclick="filterCands('NO_MATCH',this)">No Match</div>
+          </div>
+        </div>
+        <table><thead><tr><th>Candidate</th><th>Score</th><th>Decision</th><th>Skills</th><th></th></tr></thead>
+        <tbody id="candTable"><tr><td colspan="5" class="empty">Loading candidates…</td></tr></tbody></table>
+      </div>
+
+      <div class="col-r">
+        <!-- FUNNEL -->
+        <div class="card fade-in">
+          <div class="card-hdr"><div class="card-title"><div class="dot" style="background:var(--blue)"></div>Pipeline Funnel</div></div>
+          <div class="funnel-body" id="funnelBody">
+            <div class="frow"><div class="flbl">Loading</div><div class="fbar-bg"><div class="fbar" style="width:100%;background:var(--surface3)"></div></div><div class="fcnt">—</div></div>
+          </div>
+        </div>
+
+        <!-- ACTIVITY FEED -->
+        <div class="card fade-in">
+          <div class="card-hdr"><div class="card-title"><div class="dot" style="background:var(--green)"></div>Live Activity</div></div>
+          <div id="feedEl"><div class="empty">Loading…</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM CHARTS -->
+    <div class="grid-3">
+      <div class="card fade-in">
+        <div class="card-hdr"><div class="card-title"><div class="dot" style="background:var(--blue)"></div>Score Distribution</div></div>
+        <div class="chart-body"><div style="position:relative;height:180px"><canvas id="scoreChart"></canvas></div></div>
+      </div>
+      <div class="card fade-in">
+        <div class="card-hdr"><div class="card-title"><div class="dot" style="background:var(--gold)"></div>Weekly CVs</div></div>
+        <div class="chart-body"><div style="position:relative;height:180px"><canvas id="weekChart"></canvas></div></div>
+      </div>
+      <div class="card fade-in">
+        <div class="card-hdr"><div class="card-title"><div class="dot" style="background:var(--amber)"></div>Skill Coverage</div></div>
+        <div class="skills-grid" id="skillsGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════ CANDIDATES PAGE ══════════════════ -->
+  <div class="page" id="page-candidates">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+      <h2 style="font-family:'Fraunces',serif;font-weight:300;font-size:24px">All <span style="color:var(--gold2)">Candidates</span></h2>
+      <button class="btn btn-gold" onclick="openScoreModal()">Score New CV</button>
+    </div>
+    <div class="card">
+      <div class="card-hdr">
+        <div class="tabs">
+          <div class="tab active" onclick="loadCandidatePage('',this)">All</div>
+          <div class="tab" onclick="loadCandidatePage('MATCH',this)">Match</div>
+          <div class="tab" onclick="loadCandidatePage('MAYBE',this)">Maybe</div>
+          <div class="tab" onclick="loadCandidatePage('NO_MATCH',this)">No Match</div>
+        </div>
+        <span id="candPageCount" style="font-size:12px;color:var(--text3);font-family:'DM Mono',monospace"></span>
+      </div>
+      <table><thead><tr><th>Name</th><th>Score</th><th>Decision</th><th>Job</th><th>GitHub</th><th>Email Sent</th><th></th></tr></thead>
+      <tbody id="fullCandTable"><tr><td colspan="7" class="empty">Loading…</td></tr></tbody></table>
+    </div>
+  </div>
+
+  <!-- ══════════════════ JOBS PAGE ══════════════════ -->
+  <div class="page" id="page-jobs">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+      <h2 style="font-family:'Fraunces',serif;font-weight:300;font-size:24px">Open <span style="color:var(--gold2)">Jobs</span></h2>
+      <button class="btn btn-gold" onclick="openJobModal()">Create Job</button>
+    </div>
+    <div class="jobs-grid" id="jobsGrid"><div class="empty"><div class="empty-icon">📋</div><div class="empty-text">No jobs yet. Create your first one!</div></div></div>
+  </div>
+
+  <!-- ══════════════════ PIPELINE RUNS PAGE ══════════════════ -->
+  <div class="page" id="page-pipeline">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+      <h2 style="font-family:'Fraunces',serif;font-weight:300;font-size:24px">Pipeline <span style="color:var(--gold2)">History</span></h2>
+      <button class="btn btn-ghost" onclick="loadRuns()">Refresh</button>
+    </div>
+    <div class="card">
+      <table><thead><tr><th>Run ID</th><th>Job</th><th>Status</th><th>CVs</th><th>Match</th><th>Maybe</th><th>Emails</th><th>Duration</th><th>Started</th></tr></thead>
+      <tbody id="runsTable"><tr><td colspan="9" class="empty">Loading…</td></tr></tbody></table>
+    </div>
+  </div>
+
+</main>
+</div>
+
+<!-- DRAWER -->
+<div class="overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-hdr">
+    <div><div class="dname" id="drawerName">—</div><div class="drole" id="drawerRole">—</div></div>
+    <button class="close-btn" onclick="closeDrawer()">×</button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+</div>
+
+<!-- JOB MODAL -->
+<div class="modal-overlay" id="jobModalOverlay">
+  <div class="modal">
+    <div class="modal-title">Create New Job</div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Job Title *</label><input class="form-input" id="jTitle" placeholder="AI Agent Developer"></div>
+      <div class="form-group"><label class="form-label">Company *</label><input class="form-input" id="jCompany" placeholder="Noorsultan IT Solutions"></div>
+    </div>
+    <div class="form-group"><label class="form-label">Key Requirements *</label><textarea class="form-input" id="jReqs" rows="3" placeholder="Python, LangChain, LangGraph, FastAPI, Docker…"></textarea></div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Location</label><input class="form-input" id="jLoc" value="Remote"></div>
+      <div class="form-group"><label class="form-label">Experience (yrs)</label><input class="form-input" id="jExp" type="number" value="2"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Salary Range</label><input class="form-input" id="jSalary" placeholder="$60k–$90k"></div>
+      <div class="form-group"><label class="form-label">Employment Type</label>
+        <select class="form-input" id="jType"><option>Full-time</option><option>Part-time</option><option>Contract</option></select>
+      </div>
+    </div>
+    <label class="checkbox-row"><input type="checkbox" id="jAutoJD" checked>Auto-generate professional JD with AI</label>
+    <label class="checkbox-row"><input type="checkbox" id="jAutoPost">Post to LinkedIn after creation</label>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeJobModal()">Cancel</button>
+      <button class="btn btn-gold" id="jobSubmitBtn" onclick="submitJob()">Create Job</button>
+    </div>
+  </div>
+</div>
+
+<!-- SCORE CV MODAL -->
+<div class="modal-overlay" id="scoreModalOverlay">
+  <div class="modal">
+    <div class="modal-title">Score a CV</div>
+    <div class="form-group">
+      <label class="form-label">Select Job *</label>
+      <select class="form-input" id="scoreJobSelect"><option value="">Loading jobs…</option></select>
+    </div>
+    <div class="upload-zone" id="uploadZone" onclick="document.getElementById('cvFileInput').click()" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="handleDrop(event)">
+      <input type="file" id="cvFileInput" accept=".pdf,.docx,.txt" onchange="handleFileSelect(event)">
+      <div id="uploadZoneText">
+        <div style="font-size:28px;margin-bottom:8px;opacity:.4">📄</div>
+        <div style="font-size:13px;color:var(--text2)">Drop CV here or click to upload</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:4px">PDF, DOCX, or TXT</div>
+      </div>
+    </div>
+    <div id="scoreProgress" style="display:none;text-align:center;padding:16px;color:var(--text2);font-size:13px">
+      <div class="spinner" style="margin:0 auto 10px"></div>
+      Scoring with AI pipeline…
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeScoreModal()">Cancel</button>
+      <button class="btn btn-gold" id="scoreSubmitBtn" onclick="submitScore()" disabled>Score CV</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const API = 'http://localhost:8000/api/v1';
+let scoreChart = null, weekChart = null;
+let allCandidates = [], allJobs = [];
+let selectedFile = null;
+let activePage = 'dashboard';
+let unsubSSE = null;
+
+// ── API HELPERS ───────────────────────────────────────────────────────────────
+async function apiFetch(method, path, body = null, isForm = false) {
+  const opts = { method, headers: isForm ? {} : {'Content-Type':'application/json'}, body: body ? (isForm ? body : JSON.stringify(body)) : undefined };
+  const res = await fetch(`${API}${path}`, opts);
+  if (!res.ok) { const e = await res.json().catch(() => ({detail: res.statusText})); throw new Error(e.detail || 'Request failed'); }
+  return res.json();
+}
+
+// ── TOASTS ────────────────────────────────────────────────────────────────────
+function toast(msg, type = 'info') {
+  const w = document.getElementById('toastWrap');
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.innerHTML = `<span>${type==='success'?'✓':type==='error'?'✕':'ℹ'}</span>${msg}`;
+  w.appendChild(t);
+  setTimeout(() => t.remove(), 4000);
+}
+
+// ── NAVIGATION ────────────────────────────────────────────────────────────────
+function setPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById(`page-${page}`).classList.add('active');
+  document.querySelector(`[data-page="${page}"]`)?.classList.add('active');
+  activePage = page;
+  const titles = {dashboard:'Recruitment <span style="color:var(--gold2)">Dashboard</span>',candidates:'All <span style="color:var(--gold2)">Candidates</span>',jobs:'Open <span style="color:var(--gold2)">Jobs</span>',pipeline:'Pipeline <span style="color:var(--gold2)">History</span>'};
+  document.getElementById('topbarTitle').innerHTML = titles[page] || page;
+  if (page === 'candidates') loadCandidatePage('');
+  if (page === 'jobs') loadJobs();
+  if (page === 'pipeline') loadRuns();
+}
+
+document.querySelectorAll('.nav-item[data-page]').forEach(el => {
+  el.addEventListener('click', () => setPage(el.dataset.page));
+});
+
+// ── SCORE COLOR ───────────────────────────────────────────────────────────────
+function sc(s) { return s >= 70 ? '#3DB87A' : s >= 50 ? '#E8A830' : '#E05555'; }
+function decisionBadge(d) {
+  if (d === 'MATCH') return '<span class="badge bm">MATCH</span>';
+  if (d === 'MAYBE') return '<span class="badge bmy">MAYBE</span>';
+  return '<span class="badge bn">NO MATCH</span>';
+}
+function timeAgo(iso) {
+  const s = Math.floor((Date.now() - new Date(iso)) / 1000);
+  if (s < 60) return 'just now';
+  if (s < 3600) return `${Math.floor(s/60)}m ago`;
+  if (s < 86400) return `${Math.floor(s/3600)}h ago`;
+  return `${Math.floor(s/86400)}d ago`;
+}
+
+// ── DASHBOARD DATA ─────────────────────────────────────────────────────────────
+async function loadDashboard() {
+  try {
+    const [stats, candidates, activity] = await Promise.all([
+      apiFetch('GET', '/stats/global'),
+      apiFetch('GET', '/candidates/?limit=10'),
+      apiFetch('GET', '/activity/?limit=20'),
+    ]);
+    renderKPIs(stats);
+    renderFunnel(stats.funnel);
+    renderTable(candidates, 'candTable');
+    renderFeed(activity);
+    renderCharts(stats);
+    renderSkills(stats.skill_coverage);
+    document.getElementById('navCandCount').textContent = stats.total_cvs;
+    document.getElementById('navJobCount').textContent = stats.total_jobs;
+    allCandidates = candidates;
+  } catch (e) {
+    toast('Could not load dashboard: ' + e.message, 'error');
+  }
+}
+
+function renderKPIs(s) {
+  document.getElementById('kpiCvs').textContent = s.total_cvs;
+  document.getElementById('kpiCvsSub').innerHTML = `<span class="kpi-up">Live from MongoDB</span>`;
+  document.getElementById('kpiMatched').textContent = s.matched;
+  document.getElementById('kpiMatchSub').textContent = `${s.match_rate}% match rate`;
+  document.getElementById('kpiMaybe').textContent = s.maybe;
+  document.getElementById('kpiInterviews').textContent = s.interviews;
+  document.getElementById('kpiIntSub').textContent = `${s.emails_sent} emails sent`;
+  document.getElementById('kpiTimeSaved').innerHTML = `${s.time_saved_pct}<span style="font-size:18px;color:var(--text3)">%</span>`;
+}
+
+function renderFunnel(f) {
+  if (!f) return;
+  const max = f.received || 1;
+  const rows = [
+    {label:'Received', count:f.received, bg:'var(--surface3)', color:'var(--text2)'},
+    {label:'Parsed',   count:f.parsed,   bg:'#1A3060',         color:'var(--blue)'},
+    {label:'Scored',   count:f.scored,   bg:'#1A3060',         color:'var(--blue)'},
+    {label:'Match',    count:f.matched,  bg:'var(--green-bg)', color:'var(--green)'},
+    {label:'Emailed',  count:f.emailed,  bg:'var(--green-bg)', color:'var(--green)'},
+    {label:'Interview',count:f.interviewed,bg:'#1A4A32',       color:'var(--green)'},
+  ];
+  document.getElementById('funnelBody').innerHTML = rows.map(r => `
+    <div class="frow">
+      <div class="flbl">${r.label}</div>
+      <div class="fbar-bg"><div class="fbar" style="width:${Math.max(8, r.count/max*100)}%;background:${r.bg};color:${r.color}">${r.count > 0 ? r.count : ''}</div></div>
+      <div class="fcnt">${r.count}</div>
+    </div>`).join('');
+}
+
+function renderTable(candidates, tableId, showJob = false) {
+  const tbody = document.getElementById(tableId);
+  if (!candidates.length) { tbody.innerHTML = '<tr><td colspan="7" class="empty">No candidates found</td></tr>'; return; }
+  tbody.innerHTML = candidates.map(c => `
+    <tr onclick="openDrawer('${c.id}')">
+      <td><div class="cname">${c.name}</div><div class="crole">${c.university || c.cv_filename || '—'}</div></td>
+      <td><div class="sb-wrap"><div class="sb-bg"><div class="sb-fill" style="width:${c.match_score}%;background:${sc(c.match_score)}"></div></div><span class="snum" style="color:${sc(c.match_score)}">${c.match_score}</span></div></td>
+      <td>${decisionBadge(c.final_decision)}</td>
+      ${showJob ? `<td><span style="font-size:12px;color:var(--text2)">${c.job_title || '—'}</span></td>` : ''}
+      ${showJob ? `<td><span style="font-size:11px;color:var(--blue);font-family:'DM Mono',monospace">${c.github_handle || '—'}</span></td>` : ''}
+      ${showJob ? `<td>${c.email_sent ? '<span class="badge bm" style="font-size:10px">Sent</span>' : '<span style="color:var(--text3);font-size:11px">—</span>'}</td>` : ''}
+      <td><button class="act-btn" onclick="event.stopPropagation();openDrawer('${c.id}')">View</button></td>
+    </tr>`).join('');
+}
+
+function renderFeed(items) {
+  const el = document.getElementById('feedEl');
+  if (!items.length) { el.innerHTML = '<div class="empty">No activity yet</div>'; return; }
+  el.innerHTML = items.map(i => `
+    <div class="feed-item fade-in">
+      <div class="fdot" style="background:${i.color}"></div>
+      <div><div class="ftext">${i.message}</div><div class="ftime">${timeAgo(i.created_at)}</div></div>
+    </div>`).join('');
+}
+
+function renderCharts(stats) {
+  const GRID = '#2A2A32', TICK = '#5A5A62';
+  const baseOpts = { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{x:{grid:{color:GRID},ticks:{color:TICK,font:{size:10}}},y:{grid:{color:GRID},ticks:{color:TICK,font:{size:10}}}}};
+
+  if (scoreChart) scoreChart.destroy();
+  scoreChart = new Chart(document.getElementById('scoreChart'), {
+    type:'bar',
+    data:{labels:['0–20','20–40','40–60','60–70','70–80','80–100'],datasets:[{data:stats.score_distribution||[0,0,0,0,0,0],backgroundColor:['#E0555530','#E0555540','#E8A83030','#E8A83050','#3DB87A40','#3DB87A70'],borderColor:['#E05555','#E05555','#E8A830','#E8A830','#3DB87A','#3DB87A'],borderWidth:1,borderRadius:4}]},
+    options:baseOpts,
+  });
+
+  if (weekChart) weekChart.destroy();
+  const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  weekChart = new Chart(document.getElementById('weekChart'), {
+    type:'line',
+    data:{labels:days,datasets:[
+      {label:'CVs',data:stats.weekly_cvs||[0,0,0,0,0,0,0],borderColor:'#C8A96E',backgroundColor:'#C8A96E15',fill:true,tension:.4,pointBackgroundColor:'#C8A96E',pointRadius:4,borderWidth:2},
+      {label:'Matches',data:stats.weekly_matches||[0,0,0,0,0,0,0],borderColor:'#3DB87A',backgroundColor:'#3DB87A10',fill:true,tension:.4,pointBackgroundColor:'#3DB87A',pointRadius:4,borderWidth:2}
+    ]},
+    options:baseOpts,
+  });
+}
+
+function renderSkills(skillMap) {
+  const el = document.getElementById('skillsGrid');
+  const items = Object.entries(skillMap || {}).slice(0, 8);
+  if (!items.length) { el.innerHTML = '<div style="padding:16px;color:var(--text3);font-size:12px;grid-column:1/-1;text-align:center">Score some CVs to see skill data</div>'; return; }
+  const colors = ['#5B9CF6','#C8A96E','#3DB87A','#E8A830','#5B9CF6','#C8A96E','#3DB87A','#E8A830'];
+  el.innerHTML = items.map(([sk, pct], i) => `
+    <div class="skill-cell">
+      <div class="skill-name">${sk}</div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:${pct}%;background:${colors[i%colors.length]}"></div></div>
+      <div class="skill-pct" style="color:${colors[i%colors.length]}">${pct}%</div>
+    </div>`).join('');
+}
+
+// ── CANDIDATE TABLE FILTERING ─────────────────────────────────────────────────
+let currentFilter = 'all';
+async function filterCands(filter, el) {
+  currentFilter = filter;
+  document.querySelectorAll('#page-dashboard .tabs .tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  try {
+    const params = filter === 'all' ? '' : `?decision=${filter}`;
+    const data = await apiFetch('GET', `/candidates/${params}&limit=50`);
+    renderTable(data, 'candTable');
+  } catch(e) { toast(e.message, 'error'); }
+}
+
+// ── FULL CANDIDATES PAGE ──────────────────────────────────────────────────────
+async function loadCandidatePage(decision, el) {
+  if (el) { document.querySelectorAll('#page-candidates .tabs .tab').forEach(t => t.classList.remove('active')); el.classList.add('active'); }
+  const tbody = document.getElementById('fullCandTable');
+  tbody.innerHTML = '<tr><td colspan="7" class="empty">Loading…</td></tr>';
+  try {
+    const params = decision ? `?decision=${decision}&limit=200` : '?limit=200';
+    const data = await apiFetch('GET', `/candidates/${params}`);
+    document.getElementById('candPageCount').textContent = `${data.length} candidates`;
+    if (!data.length) { tbody.innerHTML = '<tr><td colspan="7" class="empty">No candidates found</td></tr>'; return; }
+    tbody.innerHTML = data.map(c => `
+      <tr onclick="openDrawer('${c.id}')">
+        <td><div class="cname">${c.name}</div><div class="crole">${c.email || '—'}</div></td>
+        <td><div class="sb-wrap"><div class="sb-bg"><div class="sb-fill" style="width:${c.match_score}%;background:${sc(c.match_score)}"></div></div><span class="snum" style="color:${sc(c.match_score)}">${c.match_score}</span></div></td>
+        <td>${decisionBadge(c.final_decision)}</td>
+        <td><span style="font-size:12px;color:var(--text2)">${c.job_title || '—'}</span></td>
+        <td><span style="font-size:11px;color:var(--blue);font-family:'DM Mono',monospace">${c.github_handle || '—'}</span></td>
+        <td>${c.email_sent ? '<span class="badge bm" style="font-size:10px">Sent</span>' : '<span style="color:var(--text3);font-size:11px">—</span>'}</td>
+        <td style="display:flex;gap:6px">
+          <button class="act-btn" onclick="event.stopPropagation();openDrawer('${c.id}')">View</button>
+          <button class="act-btn btn-danger btn-sm" onclick="event.stopPropagation();deleteCandidate('${c.id}','${c.name}')">Del</button>
+        </td>
+      </tr>`).join('');
+  } catch(e) { toast(e.message, 'error'); }
+}
+
+async function deleteCandidate(id, name) {
+  if (!confirm(`Delete ${name}?`)) return;
+  try {
+    await apiFetch('DELETE', `/candidates/${id}`);
+    toast(`${name} deleted`, 'success');
+    loadCandidatePage('');
+  } catch(e) { toast(e.message, 'error'); }
+}
+
+// ── JOBS PAGE ─────────────────────────────────────────────────────────────────
+async function loadJobs() {
+  const grid = document.getElementById('jobsGrid');
+  grid.innerHTML = '<div class="empty">Loading…</div>';
+  try {
+    allJobs = await apiFetch('GET', '/jobs/');
+    document.getElementById('navJobCount').textContent = allJobs.length;
+    if (!allJobs.length) { grid.innerHTML = '<div class="empty"><div class="empty-icon">📋</div><div class="empty-text">No jobs yet. Create your first one!</div></div>'; return; }
+    grid.innerHTML = allJobs.map(j => `
+      <div class="job-card fade-in">
+        <div class="job-title">${j.title}</div>
+        <div class="job-company">${j.company}</div>
+        <div class="job-meta">
+          <span class="job-tag">${j.location}</span>
+          <span class="job-tag">${j.employment_type}</span>
+          <span class="job-tag">${j.experience_years}+ yrs</span>
+          <span class="job-tag ${j.status === 'posted' ? 'job-status-posted' : 'job-status-draft'}">${j.status}</span>
+        </div>
+        ${j.required_skills.slice(0,4).map(s => `<span class="tag">${s}</span>`).join('')}
+        <div class="job-actions">
+          <button class="btn btn-ghost btn-sm" onclick="scoreForJob('${j.id}')">Score CVs</button>
+          ${!j.linkedin_posted ? `<button class="btn btn-ghost btn-sm" onclick="postJobLinkedIn('${j.id}','${j.title}')">Post LinkedIn</button>` : '<span style="font-size:11px;color:var(--green);margin-top:auto;padding:5px 0">✓ Posted</span>'}
+        </div>
+      </div>`).join('');
+  } catch(e) { toast(e.message, 'error'); }
+}
+
+function scoreForJob(jobId) {
+  openScoreModal();
+  setTimeout(() => {
+    const sel = document.getElementById('scoreJobSelect');
+    if (sel) sel.value = jobId;
+  }, 200);
+}
+
+async function postJobLinkedIn(jobId, title) {
+  try {
+    const r = await apiFetch('POST', `/jobs/${jobId}/post-linkedin`);
+    toast(r.success ? `Posted: ${title}` : r.message, r.success ? 'success' : 'error');
+    if (r.success) loadJobs();
+  } catch(e) { toast(e.message, 'error'); }
+}
+
+// ── PIPELINE RUNS PAGE ────────────────────────────────────────────────────────
+async function loadRuns() {
+  const tbody = document.getElementById('runsTable');
+  tbody.innerHTML = '<tr><td colspan="9" class="empty">Loading…</td></tr>';
+  try {
+    const runs = await apiFetch('GET', '/pipeline/runs?limit=30');
+    if (!runs.length) { tbody.innerHTML = '<tr><td colspan="9" class="empty">No pipeline runs yet</td></tr>'; return; }
+    tbody.innerHTML = runs.map(r => `
+      <tr>
+        <td><span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--text2)">${r.run_id}</span></td>
+        <td>${r.job_title || '—'}</td>
+        <td><span class="run-status-${r.status}">${r.status}</span></td>
+        <td>${r.total_cvs}</td>
+        <td style="color:var(--green)">${r.matched}</td>
+        <td style="color:var(--amber)">${r.maybe}</td>
+        <td>${r.emails_sent}</td>
+        <td style="font-family:'DM Mono',monospace;font-size:11px">${r.duration_seconds ? r.duration_seconds + 's' : '—'}</td>
+        <td style="font-size:11px;color:var(--text3)">${timeAgo(r.started_at)}</td>
+      </tr>`).join('');
+  } catch(e) { toast(e.message, 'error'); }
+}
+
+// ── DRAWER ────────────────────────────────────────────────────────────────────
+async function openDrawer(id) {
+  try {
+    const c = await apiFetch('GET', `/candidates/${id}`);
+    document.getElementById('drawerName').textContent = c.name;
+    document.getElementById('drawerRole').textContent = `${c.job_title || 'Unknown role'} · ${c.years_of_experience} experience`;
+    const color = sc(c.match_score);
+
+    const evalBars = (c.evaluation_scores || []).map(e => `
+      <div class="eval-row">
+        <div class="eval-lbl">${e.category}</div>
+        <div class="eval-bar-bg"><div class="eval-bar" style="width:${e.score}%;background:${sc(e.score)}"></div></div>
+        <div class="eval-n">${e.score}</div>
+      </div>`).join('');
+
+    const strengths = (c.strengths || []).map(s => `<div class="str-item"><div class="str-dot" style="background:var(--green)"></div>${s}</div>`).join('');
+    const flags = (c.red_flags || []).map(f => `<div class="str-item"><div class="str-dot" style="background:var(--red)"></div>${f}</div>`).join('');
+
+    const draft = c.final_decision !== 'NO_MATCH' ? c.outreach_email_draft : c.rejection_email_draft;
+
+    document.getElementById('drawerBody').innerHTML = `
+      <div class="score-card">
+        <div>
+          <div style="font-size:10px;color:var(--text3);font-family:'DM Mono',monospace;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px">Match Score</div>
+          <div style="font-family:'Fraunces',serif;font-size:48px;font-weight:600;line-height:1;color:${color}">${c.match_score}<span style="font-size:20px;color:var(--text3)">/100</span></div>
+          <div style="margin-top:10px">${decisionBadge(c.final_decision)}</div>
+        </div>
+        <div style="flex:1;text-align:right">
+          <div style="font-size:10px;color:var(--text3);font-family:'DM Mono',monospace;margin-bottom:3px">GitHub</div>
+          <div style="font-size:12px;color:var(--blue)">${c.github_handle || '—'}</div>
+          <div style="font-size:10px;color:var(--text3);font-family:'DM Mono',monospace;margin-top:10px;margin-bottom:3px">University</div>
+          <div style="font-size:12px">${c.university || '—'} ${c.cgpa ? '· '+c.cgpa : ''}</div>
+          <div style="font-size:10px;color:var(--text3);font-family:'DM Mono',monospace;margin-top:10px;margin-bottom:3px">Email</div>
+          <div style="font-size:11px;color:var(--text2)">${c.email || '—'}</div>
+        </div>
+      </div>
+
+      ${evalBars ? `<div class="sec-title">Evaluation Breakdown</div>${evalBars}` : ''}
+      ${strengths ? `<div class="sec-title">Strengths</div>${strengths}` : ''}
+      ${flags ? `<div class="sec-title">Red Flags</div>${flags}` : ''}
+      ${c.cultural_fit_notes ? `<div class="sec-title">Scoring Notes</div><div style="font-size:12px;color:var(--text2);line-height:1.6;white-space:pre-wrap">${c.cultural_fit_notes.substring(0,500)}${c.cultural_fit_notes.length>500?'…':''}</div>` : ''}
+
+      ${draft ? `
+        <div class="sec-title">${c.final_decision !== 'NO_MATCH' ? 'Outreach Email' : 'Rejection Email'}</div>
+        <div class="email-box">${draft}</div>
+        <button class="copy-btn" onclick="copyText(${JSON.stringify(draft)}, this)">Copy Email Draft</button>
+        ${!c.email_sent && c.email ? `<button class="send-btn" id="sendEmailBtn" onclick="sendEmail('${c.id}', this)">${c.email_sent ? '✓ Sent' : 'Send Email to ' + c.email}</button>` : ''}
+        ${c.email_sent ? '<div style="text-align:center;font-size:12px;color:var(--green);margin-top:8px">✓ Email already sent</div>' : ''}
+      ` : ''}
+
+      ${!c.interview_scheduled && c.final_decision === 'MATCH' ? `
+        <div class="sec-title">Schedule Interview</div>
+        <div style="display:flex;gap:8px;margin-top:4px">
+          <input class="form-input" id="slotInput" placeholder="e.g. 2024-12-20 10:00 AM" style="flex:1">
+          <button class="btn btn-ghost btn-sm" onclick="scheduleInterview('${c.id}')">Schedule</button>
+        </div>
+      ` : c.interview_scheduled ? `<div style="margin-top:12px;padding:10px;background:var(--blue-bg);border:1px solid var(--blue-dim);border-radius:8px;font-size:12px;color:var(--blue)">✓ Interview scheduled: ${c.interview_slot}</div>` : ''}
+    `;
+
+    document.getElementById('drawer').classList.add('open');
+    document.getElementById('drawerOverlay').classList.add('open');
+  } catch(e) { toast('Failed to load candidate: ' + e.message, 'error'); }
+}
+
+function closeDrawer() {
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('drawerOverlay').classList.remove('open');
+}
+
+function copyText(text, btn) {
+  navigator.clipboard?.writeText(text);
+  const orig = btn.textContent;
+  btn.textContent = '✓ Copied!';
+  setTimeout(() => btn.textContent = orig, 2000);
+}
+
+async function sendEmail(id, btn) {
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+  try {
+    await apiFetch('POST', `/candidates/${id}/send-email`);
+    btn.textContent = '✓ Sent!';
+    btn.style.color = 'var(--green)';
+    toast('Email sent successfully!', 'success');
+  } catch(e) { btn.disabled = false; btn.textContent = 'Retry Send'; toast(e.message, 'error'); }
+}
+
+async function scheduleInterview(id) {
+  const slot = document.getElementById('slotInput')?.value;
+  if (!slot) { toast('Enter a time slot', 'error'); return; }
+  try {
+    await apiFetch('PATCH', `/candidates/${id}`, {interview_slot: slot});
+    toast('Interview scheduled!', 'success');
+    openDrawer(id);
+  } catch(e) { toast(e.message, 'error'); }
+}
+
+// ── JOB MODAL ─────────────────────────────────────────────────────────────────
+function openJobModal() {
+  document.getElementById('jobModalOverlay').classList.add('open');
+}
+function closeJobModal() {
+  document.getElementById('jobModalOverlay').classList.remove('open');
+}
+
+async function submitJob() {
+  const btn = document.getElementById('jobSubmitBtn');
+  const title = document.getElementById('jTitle').value.trim();
+  const company = document.getElementById('jCompany').value.trim();
+  const reqs = document.getElementById('jReqs').value.trim();
+  if (!title || !company || !reqs) { toast('Fill in required fields', 'error'); return; }
+
+  btn.disabled = true;
+  btn.innerHTML = '<div class="spinner"></div> Creating…';
+  try {
+    const job = await apiFetch('POST', '/jobs/', {
+      title, company, requirements: reqs,
+      location: document.getElementById('jLoc').value,
+      experience_years: parseInt(document.getElementById('jExp').value) || 0,
+      salary_range: document.getElementById('jSalary').value,
+      employment_type: document.getElementById('jType').value,
+      auto_generate_jd: document.getElementById('jAutoJD').checked,
+      auto_post_linkedin: document.getElementById('jAutoPost').checked,
+    });
+    toast(`Job "${job.title}" created!`, 'success');
+    closeJobModal();
+    document.getElementById('jTitle').value='';document.getElementById('jCompany').value='';document.getElementById('jReqs').value='';
+    if (activePage === 'jobs') loadJobs();
+    loadDashboard();
+  } catch(e) { toast(e.message, 'error'); }
+  finally { btn.disabled=false; btn.textContent='Create Job'; }
+}
+
+// ── SCORE CV MODAL ────────────────────────────────────────────────────────────
+async function openScoreModal() {
+  document.getElementById('scoreModalOverlay').classList.add('open');
+  const sel = document.getElementById('scoreJobSelect');
+  sel.innerHTML = '<option value="">Loading jobs…</option>';
+  try {
+    allJobs = await apiFetch('GET', '/jobs/');
+    sel.innerHTML = allJobs.map(j => `<option value="${j.id}">${j.title} — ${j.company}</option>`).join('');
+    if (!allJobs.length) sel.innerHTML = '<option value="">No jobs yet — create one first</option>';
+  } catch(e) { sel.innerHTML = '<option>Error loading jobs</option>'; }
+}
+function closeScoreModal() {
+  document.getElementById('scoreModalOverlay').classList.remove('open');
+  selectedFile = null;
+  document.getElementById('scoreSubmitBtn').disabled = true;
+  document.getElementById('uploadZoneText').innerHTML = '<div style="font-size:28px;margin-bottom:8px;opacity:.4">📄</div><div style="font-size:13px;color:var(--text2)">Drop CV here or click to upload</div><div style="font-size:11px;color:var(--text3);margin-top:4px">PDF, DOCX, or TXT</div>';
+  document.getElementById('scoreProgress').style.display = 'none';
+}
+
+function handleFileSelect(e) {
+  const file = e.target.files[0];
+  if (file) { selectedFile = file; document.getElementById('scoreSubmitBtn').disabled = false; document.getElementById('uploadZoneText').innerHTML = `<div style="font-size:13px;color:var(--gold2)">📄 ${file.name}</div><div style="font-size:11px;color:var(--text3);margin-top:4px">${(file.size/1024).toFixed(0)} KB</div>`; }
+}
+function handleDrop(e) {
+  e.preventDefault(); e.currentTarget.classList.remove('drag');
+  const file = e.dataTransfer.files[0];
+  if (file) { selectedFile = file; document.getElementById('scoreSubmitBtn').disabled = false; document.getElementById('uploadZoneText').innerHTML = `<div style="font-size:13px;color:var(--gold2)">📄 ${file.name}</div>`; }
+}
+
+async function submitScore() {
+  const jobId = document.getElementById('scoreJobSelect').value;
+  if (!jobId) { toast('Select a job first', 'error'); return; }
+  if (!selectedFile) { toast('Upload a CV file', 'error'); return; }
+
+  const btn = document.getElementById('scoreSubmitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<div class="spinner"></div> Scoring…';
+  document.getElementById('scoreProgress').style.display = 'block';
+
+  try {
+    const form = new FormData();
+    form.append('file', selectedFile);
+    form.append('job_id', jobId);
+    const result = await fetch(`${API}/candidates/score/file`, {method:'POST', body:form}).then(r => r.ok ? r.json() : r.json().then(e => { throw new Error(e.detail); }));
+    toast(`${result.name} scored ${result.match_score}% → ${result.final_decision}`, result.final_decision === 'MATCH' ? 'success' : 'info');
+    closeScoreModal();
+    if (activePage === 'dashboard') loadDashboard();
+    else if (activePage === 'candidates') loadCandidatePage('');
+  } catch(e) { toast('Scoring failed: ' + e.message, 'error'); }
+  finally { btn.disabled=false; btn.textContent='Score CV'; document.getElementById('scoreProgress').style.display='none'; }
+}
+
+// ── SSE LIVE FEED ─────────────────────────────────────────────────────────────
+function startSSE() {
+  try {
+    const es = new EventSource(`${API}/activity/stream`);
+    es.onmessage = (e) => {
+      try {
+        const item = JSON.parse(e.data);
+        const feedEl = document.getElementById('feedEl');
+        if (!feedEl) return;
+        const div = document.createElement('div');
+        div.className = 'feed-item fade-in';
+        div.innerHTML = `<div class="fdot" style="background:${item.color}"></div><div><div class="ftext">${item.message}</div><div class="ftime">just now</div></div>`;
+        feedEl.insertBefore(div, feedEl.firstChild);
+        if (feedEl.children.length > 15) feedEl.removeChild(feedEl.lastChild);
+      } catch(_) {}
+    };
+    es.onerror = () => { es.close(); setTimeout(startSSE, 5000); };
+  } catch(_) {}
+}
+
+// ── REFRESH ───────────────────────────────────────────────────────────────────
+async function refreshAll() {
+  document.getElementById('refreshSpinner').style.display = 'inline-block';
+  document.getElementById('refreshIcon').style.display = 'none';
+  try { await loadDashboard(); toast('Dashboard refreshed', 'success'); }
+  catch(e) { toast(e.message, 'error'); }
+  finally {
+    document.getElementById('refreshSpinner').style.display = 'none';
+    document.getElementById('refreshIcon').style.display = 'inline';
+  }
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+loadDashboard();
+startSSE();
+// Auto-refresh every 30 seconds
+setInterval(() => { if (activePage === 'dashboard') loadDashboard(); }, 30000);
+</script>
+</body>
+</html>
