@@ -6,11 +6,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
+# Copy requirements first (must be in same folder as Dockerfile)
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copy entire project
 COPY . .
 
+# Create CV storage folder
 RUN mkdir -p received_cvs
 
 EXPOSE 8000
