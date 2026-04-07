@@ -17,11 +17,14 @@ _client: AsyncIOMotorClient | None = None
 
 
 async def connect_mongo():
-    """Call on FastAPI startup."""
     global _client
+
     _client = AsyncIOMotorClient(settings.MONGO_URI)
+
+    db = _client.get_database(settings.MONGO_DB_NAME)  # ✅ FIX
+
     await init_beanie(
-        database=_client[settings.MONGO_DB_NAME],
+        database=db,
         document_models=[
             JobDocument,
             CandidateDocument,
@@ -30,8 +33,8 @@ async def connect_mongo():
             StatsDocument,
         ],
     )
-    logger.info(f"MongoDB connected → {settings.MONGO_DB_NAME}")
 
+    logger.info(f"MongoDB connected → {settings.MONGO_DB_NAME}")
 
 async def close_mongo():
     """Call on FastAPI shutdown."""
