@@ -486,5 +486,30 @@
     "final_decision": "MAYBE",
     "outreach_email_draft": "Hello Asif, we came across your profile and were impressed with your skills in JavaScript and MongoDB. Although you don't have direct experience with MERN Stack, we believe you have the potential to learn and grow with our team. We'd like to invite you for an interview to discuss further.",
     "rejection_email_draft": ""
+  },
+  "0e342677586a58a6b88f0c9fee6338a036813d7f7f8cfdffeab57edcf255dbbd": {
+    "candidate_name": "Asif Ali",
+    "email": "asifaali1917@gmail.com",
+    "phone_no": "+92-320-9842379",
+    "university_name": "FAST National University of Computer and Emerging Sciences Islamabad, Pakistan",
+    "cgpa": "3.07/4.0",
+    "github_handle": "aliasif767",
+    "years_of_experience": "1 year",
+    "match_score": 78,
+    "skill_matches": [],
+    "language_matches": [],
+    "project_highlights": [],
+    "evaluation_scores": [],
+    "strengths": [
+      "Machine learning expertise",
+      "Problem-solving skills",
+      "Communication skills"
+    ],
+    "red_flags": [],
+    "cultural_fit_notes": "Technical Skills: 28/35, Programming Languages: 20/20, Project Relevance: 15/20, Years Experience: 10/15, GitHub Quality: 5/10. Total: 78/100. MATCH",
+    "github_summary": "Username: aliasif767\nPublic Repos: 18\nFollowers: 0\nTotal Stars: 4\nTop Langs: Python(4), Unknown(3), Jupyter Notebook(2), TypeScript(1)\n\nREPOS:\nREPO: Advance-ai-recruitment-system | LANG: Python | STARS: 0 | TOPICS: none | DESC: N/A\nREPO: AI-Recruitment-system | LANG: Python | STARS: 1 | TOPICS: none | DESC: An AI-powered recruitment intelligence system that automates resume screening, performs GitHub technical audits, and handles candidate outreach using Langchain ,LangGraph and Groq\nREPO: aliasif767 | LANG: Unknown | STARS: 0 | TOPICS: none | DESC: N/A\nREPO: Automated-Book-Generation-System | LANG: Python | STARS: 1 | TOPICS: none | DESC: N/A\nREPO: Automated-Glaucoma-Detection-Using-Optic-Disc-and-Cup-Segmentation | LANG: Jupyter Notebook | STARS: 0 | TOPICS: none | DESC:  Developed an automated glaucoma detection system using CNNs and U-Nets to segment the optic disc and cup from  retinal fundus images. The system calculates the Cup-to-Disc Ratio (CDR) for early diagnosis, achieving high accuracy on  the ORIGA dataset. Performance was evaluated using metrics like precision, recall, and IoU\nREPO: Desibots | LANG: Python | STARS: 1 | TOPICS: none | DESC: N/A\nREPO: Email-spam-classifier | LANG: Jupyter Notebook | STARS: 0 | TOPICS: none | DESC: End to end code for the email spam classifier\nREPO: Environmental-Monitoring-and-Pollution-Prediction | LANG: Unknown | STARS: 0 | TOPICS: none | DESC:  Developed an Environmental Monitoring and Pollution Prediction System using Python, DVC, and MLflow. Implemented  ARIMA and LSTM models to forecast weather trends using real-time data from OpenWeatherMap API. Deployed the  predictive service with FastAPI for real-time insights\nREPO: exam-cheating-detection | LANG: TypeScript | STARS: 1 | TOPICS: none | DESC: N/A\nREPO: Food-order-app | LANG: Unknown | STARS: 0 | TOPICS: none | DESC: Food order app with flutter",
+    "final_decision": "MATCH",
+    "outreach_email_draft": "Dear Asif, we are impressed with your skills and experience and would like to invite you for an interview.",
+    "rejection_email_draft": ""
   }
 }
