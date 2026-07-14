@@ -1,37 +1,70 @@
 {
-  "5d20dab376b8ff7cf1d4b554f020c1b2b4edf2d7ba402243ba0b4fb752bdfdfe": {
+  "62838ac2b458e3108425de2160bd046ed79b907bd0a95df139076bbc75026430": {
     "candidate_name": "Asif Ali",
     "email": "asifaali1917@gmail.com",
     "phone_no": "+92-320-9842379",
     "university_name": "FAST National University of Computer and Emerging Sciences Islamabad, Pakistan",
     "cgpa": "3.07/4.0",
     "github_handle": "aliasif767",
-    "years_of_experience": "0 years",
-    "match_score": 83,
+    "linkedin_handle": "linkedin.com/in/asif-ali-006506298/",
+    "years_of_experience": "0",
+    "seniority_tier": "mid",
+    "match_score": 70,
+    "final_decision": "MATCH",
     "skill_matches": [
       {
-        "skill_name": "Agentic AI",
+        "skill_name": "Python",
         "required": true,
         "candidate_has": true,
-        "proficiency": 8,
-        "evidence": "Resume and GitHub repositories",
-        "years": "1+ year"
+        "proficiency": 10,
+        "evidence": "Developed and implemented Agentic AI solutions to automate and enhance various business processes",
+        "years": "2-3 years",
+        "github_verified": true
       },
       {
-        "skill_name": "Python programming",
+        "skill_name": "AI",
         "required": true,
         "candidate_has": true,
-        "proficiency": 9,
-        "evidence": "Resume and GitHub repositories",
-        "years": "3+ years"
+        "proficiency": 10,
+        "evidence": "Developed a virtual AI doctor that interacts with patients to understand their symptoms and provide basic medical advice and over the counter treatments",
+        "years": "2-3 years",
+        "github_verified": true
       },
       {
-        "skill_name": "Familiarity with specific AI tools and frameworks (langchain, langgraph, crew ai, llm)",
+        "skill_name": "Machine Learning",
         "required": true,
         "candidate_has": true,
-        "proficiency": 7,
-        "evidence": "Resume and GitHub repositories",
-        "years": "1+ year"
+        "proficiency": 10,
+        "evidence": "Contributed to improving model accuracy and efficiency through rigorous experimentation and collaboration with cross-functional research teams",
+        "years": "2-3 years",
+        "github_verified": true
+      },
+      {
+        "skill_name": "Langchain",
+        "required": true,
+        "candidate_has": true,
+        "proficiency": 10,
+        "evidence": "Developed a virtual AI doctor that interacts with patients to understand their symptoms and provide basic medical advice and over the counter treatments",
+        "years": "1-2 years",
+        "github_verified": true
+      },
+      {
+        "skill_name": "Langgraph",
+        "required": true,
+        "candidate_has": true,
+        "proficiency": 6,
+        "evidence": "Developed a virtual AI doctor that interacts with patients to understand their symptoms and provide basic medical advice and over the counter treatments",
+        "years": "1-2 years",
+        "github_verified": false
+      },
+      {
+        "skill_name": "Agile/Scrum Development Methodologies",
+        "required": false,
+        "candidate_has": true,
+        "proficiency": 6,
+        "evidence": "Collaborated with cross-functional teams to identify AI opportunities and deliver impactful solutions",
+        "years": "1-2 years",
+        "github_verified": false
       }
     ],
     "language_matches": [
@@ -39,38 +72,72 @@
         "language": "Python",
         "jd_requires": true,
         "candidate_has": true,
-        "proficiency": 9,
-        "evidence": "Resume and GitHub repositories"
+        "proficiency": 10,
+        "evidence": "Developed a browser extension platform for video ad analysis with modules for engagement tracking, demographic analysis, and object detection",
+        "github_verified": true
+      },
+      {
+        "language": "C++",
+        "jd_requires": false,
+        "candidate_has": true,
+        "proficiency": 6,
+        "evidence": "No specific project or experience mentioned",
+        "github_verified": false
+      },
+      {
+        "language": "Dart",
+        "jd_requires": false,
+        "candidate_has": true,
+        "proficiency": 4,
+        "evidence": "No specific project or experience mentioned",
+        "github_verified": false
+      },
+      {
+        "language": "Go",
+        "jd_requires": false,
+        "candidate_has": true,
+        "proficiency": 4,
+        "evidence": "No specific project or experience mentioned",
+        "github_verified": false
+      },
+      {
+        "language": "JavaScript",
+        "jd_requires": false,
+        "candidate_has": true,
+        "proficiency": 6,
+        "evidence": "Developed a browser extension platform for video ad analysis with modules for engagement tracking, demographic analysis, and object detection",
+        "github_verified": false
+      },
+      {
+        "language": "Java",
+        "jd_requires": false,
+        "candidate_has": true,
+        "proficiency": 6,
+        "evidence": "No specific project or experience mentioned",
+        "github_verified": false
       }
     ],
     "project_highlights": [
       {
         "project_name": "Virtual AI Doctor - Agentic Healthcare Assistant",
         "relevance_score": 9,
-        "tech_stack": [
-          "langchain",
-          "langgraph",
-          "OpenAI API"
-        ],
-        "description": "Developed a virtual AI doctor that interacts with patients to understand their symptoms and provide basic medical advice",
-        "source": "Resume",
-        "impact": "Demonstrates expertise in Agentic AI, langchain, and langgraph"
-      },
-      {
-        "project_name": "AI-Recruitment-system",
-        "relevance_score": 9,
+        "complexity_score": 9,
         "tech_stack": [
           "Langchain",
-          "LangGraph",
-          "Groq"
+          "Langgraph",
+          "OpenAI API",
+          "Flask",
+          "FastAPI"
         ],
-        "description": "Automated resume screening, performs GitHub technical audits, and handles candidate outreach using Langchain, LangGraph, and Groq",
-        "source": "GitHub",
-        "impact": "Demonstrates expertise in Agentic AI, langchain, and langgraph"
+        "description": "Developed a virtual AI doctor that interacts with patients to understand their symptoms and provide basic medical advice and over the counter treatments",
+        "source": "Resume",
+        "impact": "Demonstrates the use of Agentic AI for accessible, automated, and responsive healthcare support",
+        "github_url": "https://github.com/aliasif767"
       },
       {
         "project_name": "AdInsight",
-        "relevance_score": 4,
+        "relevance_score": 6,
+        "complexity_score": 8,
         "tech_stack": [
           "Python",
           "JS",
@@ -79,437 +146,666 @@
         ],
         "description": "Developed a browser extension platform for video ad analysis with modules for engagement tracking, demographic analysis, and object detection",
         "source": "Resume",
-        "impact": "Demonstrates some relevant skills like Python and TensorFlow"
+        "impact": "Not mentioned",
+        "github_url": ""
+      },
+      {
+        "project_name": "Conditional Video Frame Prediction Using Deep Learning Models on UCF101 Dataset",
+        "relevance_score": 7,
+        "complexity_score": 9,
+        "tech_stack": [
+          "Python",
+          "TensorFlow"
+        ],
+        "description": "Uses ConvLSTM, PredRNN, and Transformers to predict future video frames from short sequences of the UCF101 dataset",
+        "source": "Resume",
+        "impact": "Enables applications in video synthesis and scene prediction",
+        "github_url": ""
       },
       {
         "project_name": "Environmental Monitoring and Pollution Prediction",
-        "relevance_score": 4,
+        "relevance_score": 5,
+        "complexity_score": 8,
         "tech_stack": [
           "Python",
           "DVC",
-          "MLflow"
+          "MLflow",
+          "TensorFlow/PyTorch"
         ],
-        "description": "Developed an Environmental Monitoring and Pollution Prediction System using Python, DVC, and MLflow",
+        "description": "Developed a predictive system using ARIMA and LSTM models",
         "source": "Resume",
-        "impact": "Demonstrates some relevant skills like Python and data analysis"
+        "impact": "Provides real-time insights",
+        "github_url": ""
       },
       {
-        "project_name": "Automated-Glaucoma-Detection-Using-Optic-Disc-and-Cup-Segmentation",
-        "relevance_score": 3,
+        "project_name": "AI-Recruitment-system",
+        "relevance_score": 10,
+        "complexity_score": 9,
         "tech_stack": [
-          "CNNs",
-          "U-Nets"
+          "Python",
+          "Langchain"
         ],
-        "description": "Developed an automated glaucoma detection system using CNNs and U-Nets",
+        "description": "Developed an AI-powered recruitment intelligence system that automates resume screening and performs GitHub technical assessment",
         "source": "GitHub",
-        "impact": "Demonstrates expertise in deep learning"
+        "impact": "Automates resume screening and performs GitHub technical assessment",
+        "github_url": "https://github.com/aliasif767/AI-Recruitment-system"
       }
     ],
-    "evaluation_scores": [
+    "category_scores": [
       {
-        "category": "Technical Skills",
-        "score": 80,
-        "notes": "Strong background in Python programming, Agentic AI, and AI/ML development"
+        "category": "technical_skills",
+        "label": "Technical Skills",
+        "weight_used": 33,
+        "raw_score": 80.0,
+        "weighted_score": 26.4,
+        "evidence": ""
       },
       {
-        "category": "Programming Languages",
-        "score": 70,
-        "notes": "Proficient in Python, with some experience in other languages like C++, Dart, Go, JavaScript, and Java"
+        "category": "programming_languages",
+        "label": "Programming Languages",
+        "weight_used": 13,
+        "raw_score": 80.0,
+        "weighted_score": 10.4,
+        "evidence": ""
       },
       {
-        "category": "Project Relevance",
-        "score": 85,
-        "notes": "Most relevant projects: Virtual AI Doctor - Agentic Healthcare Assistant and AI-Recruitment-system"
+        "category": "project_relevance",
+        "label": "Project Relevance",
+        "weight_used": 20,
+        "raw_score": 80.0,
+        "weighted_score": 16.0,
+        "evidence": ""
       },
       {
-        "category": "Experience Level",
-        "score": 40,
-        "notes": "Limited experience, with 0 years of direct experience, but some relevant internship and project experience"
+        "category": "years_experience",
+        "label": "Years of Experience",
+        "weight_used": 7,
+        "raw_score": 50.0,
+        "weighted_score": 3.5,
+        "evidence": ""
       },
       {
-        "category": "Code Quality",
-        "score": 75,
-        "notes": "Code quality is good, with some evidence of best practices and version control"
+        "category": "github_quality",
+        "label": "GitHub Quality",
+        "weight_used": 13,
+        "raw_score": 38.0,
+        "weighted_score": 4.94,
+        "evidence": ""
       },
       {
-        "category": "Learning & Growth",
-        "score": 80,
-        "notes": "Demonstrates a willingness to learn and grow, with some evidence of self-motivation and adaptability"
+        "category": "education_certifications",
+        "label": "Education & Certifications",
+        "weight_used": 3,
+        "raw_score": 60.0,
+        "weighted_score": 1.8,
+        "evidence": ""
+      },
+      {
+        "category": "soft_skills",
+        "label": "Soft Skills",
+        "weight_used": 11,
+        "raw_score": 70.0,
+        "weighted_score": 7.7,
+        "evidence": ""
       }
     ],
+    "evaluation_scores": [],
     "strengths": [
-      "Agentic AI",
-      "langchain",
-      "langgraph",
+      "AI",
+      "Machine Learning",
+      "Langchain",
       "Python"
     ],
     "red_flags": [],
-    "cultural_fit_notes": "TECHNICAL SKILLS: 35/35 (5 must-haves, each clearly present), PROGRAMMING LANGUAGES: 20/20 (1 required language), PROJECT RELEVANCE: 20/20 (3+ relevant projects), EXPERIENCE: 3/15 (less than half of the required experience), GITHUB: 5/10 (active but not highly relevant), match_score = 83",
-    "github_summary": "Username: aliasif767\nPublic Repos: 17\nFollowers: 0\nTotal Stars: 5\nTop Langs: Python(3), Unknown(3), Jupyter Notebook(2), TypeScript(1), HTML(1)\n\nREPOS:\nREPO: AI-Recruitment-system | LANG: Python | STARS: 1 | TOPICS: none | DESC: An AI-powered recruitment intelligence system that automates resume screening, performs GitHub technical audits, and handles candidate outreach using Langchain ,LangGraph and Groq\nREPO: aliasif767 | LANG: Unknown | STARS: 0 | TOPICS: none | DESC: N/A\nREPO: Automated-Book-Generation-System | LANG: Python | STARS: 1 | TOPICS: none | DESC: N/A\nREPO: Automated-Glaucoma-Detection-Using-Optic-Disc-and-Cup-Segmentation | LANG: Jupyter Notebook | STARS: 0 | TOPICS: none | DESC:  Developed an automated glaucoma detection system using CNNs and U-Nets to segment the optic disc and cup from  retinal fundus images. The system calculates the Cup-to-Disc Ratio (CDR) for early diagnosis, achieving high accuracy on  the ORIGA dataset. Performance was evaluated using metrics like precision, recall, and IoU\nREPO: Desibots | LANG: Python | STARS: 1 | TOPICS: none | DESC: N/A\nREPO: Email-spam-classifier | LANG: Jupyter Notebook | STARS: 0 | TOPICS: none | DESC: End to end code for the email spam classifier\nREPO: Environmental-Monitoring-and-Pollution-Prediction | LANG: Unknown | STARS: 0 | TOPICS: none | DESC:  Developed an Environmental Monitoring and Pollution Prediction System using Python, DVC, and MLflow. Implemented  ARIMA and LSTM models to forecast weather trends using real-time data from OpenWeatherMap API. Deployed the  predictive service with FastAPI for real-time insights\nREPO: exam-cheating-detection | LANG: TypeScript | STARS: 1 | TOPICS: none | DESC: N/A\nREPO: Food-order-app | LANG: Unknown | STARS: 0 | TOPICS: none | DESC: Food order app with flutter\nREPO: MedTranslate-Pro | LANG: HTML | STARS: 1 | TOPICS: none | DESC: N/A",
-    "final_decision": "MATCH",
-    "outreach_email_draft": "Dear Asif, we are impressed with your skills in Agentic AI and langchain, and would like to discuss your application further.",
-    "rejection_email_draft": ""
+    "cultural_fit_notes": "Technical Skills: 26.4/33 (Python, AI, Machine Learning, Langchain) \u2192 score 26.4/33, Programming Languages: 10.4/13 (Python, JavaScript) \u2192 score 10.4/13, Project Relevance: 16/20 (AI-Recruitment-system, Virtual AI Doctor) \u2192 score 16/20, Years Experience: 3.5/7 (0 years of professional experience, but relevant internships and projects) \u2192 score 3.5/7, GitHub Quality: 6.5/13 (active and relevant repositories) \u2192 score 6.5/13, Education & Certifications: 2.4/3 (Bachelor of Science in Computer Science) \u2192 score 2.4/3, Soft Skills: 8.8/11 (Problem Solving, Team Collaboration, Project Management) \u2192 score 8.8/11",
+    "github_summary": "Username: aliasif767\nPublic Repos: 19 | Followers: 0\nTotal Stars: 9 | Total Forks: 0\nTop Languages: Python(5), Unknown(4), Jupyter Notebook(3), TypeScript(2), Dart(2), HTML(1)\nActivity Score: 33/100 (8/19 repos pushed in last 6 months)\nRelevance Score: 43/100\nHighly Relevant Repos (1): AI-Recruitment-system\nSomewhat Relevant Repos (4): Advance-ai-recruitment-system, Automated-Book-Generation-System, Desibots, whatsapp-chat-analysis\nSkill Evidence: {\"python\": [\"Advance-ai-recruitment-system\", \"AI-Recruitment-system\", \"Automated-Book-Generation-System\", \"Desibots\", \"whatsapp-chat-analysis\"], \"langchain\": [\"AI-Recruitment-system\"]}\n\nREPO DETAILS:\nREPO: Advance-ai-recruitment-system | LANG: Python | STARS: 0 | TOPICS: none | LAST_PUSH: 2026-04-07T11:12:23+00:00 | RELEVANCE: somewhat_relevant | DESC: N/A\nREPO: AI-Recruitment-system | LANG: Python | STARS: 1 | TOPICS: none | LAST_PUSH: 2026-03-11T04:52:51+00:00 | RELEVANCE: highly_relevant | DESC: An AI-powered recruitment intelligence system that automates resume screening, performs GitHub techn\nREPO: aliasif767 | LANG: Unknown | STARS: 0 | TOPICS: none | LAST_PUSH: 2026-03-25T19:46:16+00:00 | RELEVANCE: unrelated | DESC: N/A\nREPO: Automated-Book-Generation-System | LANG: Python | STARS: 1 | TOPICS: none | LAST_PUSH: 2026-02-08T20:17:59+00:00 | RELEVANCE: somewhat_relevant | DESC: N/A\nREPO: Automated-Glaucoma-Detection-Using-Optic-Disc-and-Cup-Segmentation | LANG: Jupyter Notebook | STARS: 0 | TOPICS: none | LAST_PUSH: 2025-04-12T07:27:28+00:00 | RELEVANCE: unrelated | DESC:  Developed an automated glaucoma detection system using CNNs and U-Nets to segment the optic disc an\nREPO: Desibots | LANG: Python | STARS: 1 | TOPICS: none | LAST_PUSH: 2026-05-06T19:29:18+00:00 | RELEVANCE: somewhat_relevant | DESC: N/A\nREPO: Email-spam-classifier | LANG: Jupyter Notebook | STARS: 0 | TOPICS: none | LAST_PUSH: 2025-04-03T12:14:38+00:00 | RELEVANCE: unrelated | DESC: End to end code for the email spam classifier\nREPO: Environmental-Monitoring-and-Pollution-Prediction | LANG: Unknown | STARS: 0 | TOPICS: none | LAST_PUSH: 2025-04-03T10:41:51+00:00 | RELEVANCE: unrelated | DESC:  Developed an Environmental Monitoring and Pollution Prediction System using Python, DVC, and MLflow\nREPO: exam-cheating-detection | LANG: TypeScript | STARS: 1 | TOPICS: none | LAST_PUSH: 2026-03-20T20:50:55+00:00 | RELEVANCE: unrelated | DESC: N/A\nREPO: Food-order-app | LANG: Unknown | STARS: 0 | TOPICS: none | LAST_PUSH: 2025-04-11T15:35:24+00:00 | RELEVANCE: unrelated | DESC: Food order app with flutter\nREPO: MedTranslate-Pro | LANG: HTML | STARS: 1 | TOPICS: none | LAST_PUSH: 2025-08-16T14:49:31+00:00 | RELEVANCE: unrelated | DESC: N/A\nREPO: movie-recommender-system-tmdb-dataset | LANG: Jupyter Notebook | STARS: 0 | TOPICS: none | LAST_PUSH: 2025-04-03T11:34:00+00:00 | RELEVANCE: unrelated | DESC: A content based movie recommender system using cosine similarity\nREPO: Neural-Network-Acceleration-on-GPUs | LANG: Cuda | STARS: 1 | TOPICS: none | LAST_PUSH: 2025-04-20T18:30:34+00:00 | RELEVANCE: unrelated | DESC: N/A\nREPO: portfolio-frontend | LANG: CSS | STARS: 0 | TOPICS: none | LAST_PUSH: 2026-05-11T06:42:35+00:00 | RELEVANCE: unrelated | DESC: N/A\nREPO: smart-university-advisor | LANG: TypeScript | STARS: 2 | TOPICS: none | LAST_PUSH: 2026-06-14T13:23:21+00:00 | RELEVANCE: unrelated | DESC: N/A\nREPO: Social_Media_App | LANG: Dart | STARS: 0 | TOPICS: none | LAST_PUSH: 2025-04-10T18:15:02+00:00 | RELEVANCE: unrelated | DESC: Social Media App using flutter\nREPO: Video-Frame-Prediction | LANG: Unknown | STARS: 1 | TOPICS: none | LAST_PUSH: 2025-04-03T10:40:12+00:00 | RELEVANCE: unrelated | DESC: This project uses deep learning models\u2014ConvLSTM, PredRNN, and Transformers\u2014to predict future video f\nREPO: whatsapp-chat-analysis | LANG: Python | STARS: 0 | TOPICS: none | LAST_PUSH: 2025-04-05T17:50:47+00:00 | RELEVANCE: somewhat_relevant | DESC: A streamlit app to analyze your whatsapp chats\nREPO: WhatsApp-Clone | LANG: Dart | STARS: 0 | TOPICS: none | LAST_PUSH: 2025-04-10T18:05:39+00:00 | RELEVANCE: unrelated | DESC: Full Stack Whatsapp Clone with Flutter, Firebase & Riverpod 2.0\n\n=== CROSS-VALIDATOR SCORES ===\nRaw scores: {\"technical_skills\": 80.0, \"programming_languages\": 80.0, \"project_relevance\": 80.0, \"years_experience\": 50.0, \"github_quality\": 38.0, \"education_certifications\": 60.0, \"soft_skills\": 70.0}\nCalculated total: 71 | LLM proposed: 70 | Gap: 1 | Cross-check passed: True | Confidence: medium\nFINAL VALIDATED SCORE: 70",
+    "github_insights": {
+      "username": "aliasif767",
+      "public_repos": 19,
+      "followers": 0,
+      "top_languages": [
+        "Python",
+        "Unknown",
+        "Jupyter Notebook",
+        "TypeScript",
+        "Dart",
+        "HTML"
+      ],
+      "activity_score": 33,
+      "relevance_score": 43,
+      "highly_relevant_repos": [
+        "AI-Recruitment-system"
+      ],
+      "somewhat_relevant_repos": [
+        "Advance-ai-recruitment-system",
+        "Automated-Book-Generation-System",
+        "Desibots",
+        "whatsapp-chat-analysis"
+      ],
+      "skill_evidence": {
+        "python": [
+          "Advance-ai-recruitment-system",
+          "AI-Recruitment-system",
+          "Automated-Book-Generation-System",
+          "Desibots",
+          "whatsapp-chat-analysis"
+        ],
+        "langchain": [
+          "AI-Recruitment-system"
+        ]
+      },
+      "total_stars": 9,
+      "total_forks": 0,
+      "has_relevant_projects": true,
+      "repos": [
+        {
+          "name": "Advance-ai-recruitment-system",
+          "language": "Python",
+          "stars": 0,
+          "forks": 0,
+          "topics": [],
+          "description": "",
+          "last_pushed": "2026-04-07T11:12:23+00:00",
+          "relevance_to_jd": "somewhat_relevant",
+          "has_readme": false
+        },
+        {
+          "name": "AI-Recruitment-system",
+          "language": "Python",
+          "stars": 1,
+          "forks": 0,
+          "topics": [],
+          "description": "An AI-powered recruitment intelligence system that automates resume screening, performs GitHub technical audits, and handles candidate outreach using Langchain ,LangGraph and Groq",
+          "last_pushed": "2026-03-11T04:52:51+00:00",
+          "relevance_to_jd": "highly_relevant",
+          "has_readme": false
+        },
+        {
+          "name": "aliasif767",
+          "language": "Unknown",
+          "stars": 0,
+          "forks": 0,
+          "topics": [],
+          "description": "",
+          "last_pushed": "2026-03-25T19:46:16+00:00",
+          "relevance_to_jd": "unrelated",
+          "has_readme": false
+        },
+        {
+          "name": "Automated-Book-Generation-System",
+          "language": "Python",
+          "stars": 1,
+          "forks": 0,
+          "topics": [],
+          "description": "",
+          "last_pushed": "2026-02-08T20:17:59+00:00",
+          "relevance_to_jd": "somewhat_relevant",
+          "has_readme": false
+        },
+        {
+          "name": "Automated-Glaucoma-Detection-Using-Optic-Disc-and-Cup-Segmentation",
+          "language": "Jupyter Notebook",
+          "stars": 0,
+          "forks": 0,
+          "topics": [],
+          "description": " Developed an automated glaucoma detection system using CNNs and U-Nets to segment the optic disc and cup from  retinal fundus images. The system calculates the Cup-to-Disc Ratio (CDR) for early diagn",
+          "last_pushed": "2025-04-12T07:27:28+00:00",
+          "relevance_to_jd": "unrelated",
+          "has_readme": false
+        },
+        {
+          "name": "Desibots",
+          "language": "Python",
+          "stars": 1,
+          "forks": 0,
+          "topics": [],
+          "description": "",
+          "last_pushed": "2026-05-06T19:29:18+00:00",
+          "relevance_to_jd": "somewhat_relevant",
+          "has_readme": false
+        },
+        {
+          "name": "Email-spam-classifier",
+          "language": "Jupyter Notebook",
+          "stars": 0,
+          "forks": 0,
+          "topics": [],
+          "description": "End to end code for the email spam classifier",
+          "last_pushed": "2025-04-03T12:14:38+00:00",
+          "relevance_to_jd": "unrelated",
+          "has_readme": false
+        },
+        {
+          "name": "Environmental-Monitoring-and-Pollution-Prediction",
+          "language": "Unknown",
+          "stars": 0,
+          "forks": 0,
+          "topics": [],
+          "description": " Developed an Environmental Monitoring and Pollution Prediction System using Python, DVC, and MLflow. Implemented  ARIMA and LSTM models to forecast weather trends using real-time data from OpenWeathe",
+          "last_pushed": "2025-04-03T10:41:51+00:00",
+          "relevance_to_jd": "unrelated",
+          "has_readme": false
+        },
+        {
+          "name": "exam-cheating-detection",
+          "language": "TypeScript",
+          "stars": 1,
+          "forks": 0,
+          "topics": [],
+          "description": "",
+          "last_pushed": "2026-03-20T20:50:55+00:00",
+          "relevance_to_jd": "unrelated",
+          "has_readme": false
+        },
+        {
+          "name": "Food-order-app",
+          "language": "Unknown",
+          "stars": 0,
+          "forks": 0,
+          "topics": [],
+          "description": "Food order app with flutter",
+          "last_pushed": "2025-04-11T15:35:24+00:00",
+          "relevance_to_jd": "unrelated",
+          "has_readme": false
+        },
+        {
+          "name": "MedTranslate-Pro",
+          "language": "HTML",
+          "stars": 1,
+          "forks": 0,
+          "topics": [],
+          "description": "",
+          "last_pushed": "2025-08-16T14:49:31+00:00",
+          "relevance_to_jd": "unrelated",
+          "has_readme": false
+        },
+        {
+          "name": "movie-recommender-system-tmdb-dataset",
+          "language": "Jupyter Notebook",
+          "stars": 0,
+          "forks": 0,
+          "topics": [],
+          "description": "A content based movie recommender system using cosine similarity",
+          "last_pushed": "2025-04-03T11:34:00+00:00",
+          "relevance_to_jd": "unrelated",
+          "has_readme": false
+        },
+        {
+          "name": "Neural-Network-Acceleration-on-GPUs",
+          "language": "Cuda",
+          "stars": 1,
+          "forks": 0,
+          "topics": [],
+          "description": "",
+          "last_pushed": "2025-04-20T18:30:34+00:00",
+          "relevance_to_jd": "unrelated",
+          "has_readme": false
+        },
+        {
+          "name": "portfolio-frontend",
+          "language": "CSS",
+          "stars": 0,
+          "forks": 0,
+          "topics": [],
+          "description": "",
+          "last_pushed": "2026-05-11T06:42:35+00:00",
+          "relevance_to_jd": "unrelated",
+          "has_readme": false
+        },
+        {
+          "name": "smart-university-advisor",
+          "language": "TypeScript",
+          "stars": 2,
+          "forks": 0,
+          "topics": [],
+          "description": "",
+          "last_pushed": "2026-06-14T13:23:21+00:00",
+          "relevance_to_jd": "unrelated",
+          "has_readme": false
+        },
+        {
+          "name": "Social_Media_App",
+          "language": "Dart",
+          "stars": 0,
+          "forks": 0,
+          "topics": [],
+          "description": "Social Media App using flutter",
+          "last_pushed": "2025-04-10T18:15:02+00:00",
+          "relevance_to_jd": "unrelated",
+          "has_readme": false
+        },
+        {
+          "name": "Video-Frame-Prediction",
+          "language": "Unknown",
+          "stars": 1,
+          "forks": 0,
+          "topics": [],
+          "description": "This project uses deep learning models\u2014ConvLSTM, PredRNN, and Transformers\u2014to predict future video frames from  short sequences of the UCF101 dataset",
+          "last_pushed": "2025-04-03T10:40:12+00:00",
+          "relevance_to_jd": "unrelated",
+          "has_readme": false
+        },
+        {
+          "name": "whatsapp-chat-analysis",
+          "language": "Python",
+          "stars": 0,
+          "forks": 0,
+          "topics": [],
+          "description": "A streamlit app to analyze your whatsapp chats",
+          "last_pushed": "2025-04-05T17:50:47+00:00",
+          "relevance_to_jd": "somewhat_relevant",
+          "has_readme": false
+        },
+        {
+          "name": "WhatsApp-Clone",
+          "language": "Dart",
+          "stars": 0,
+          "forks": 0,
+          "topics": [],
+          "description": "Full Stack Whatsapp Clone with Flutter, Firebase & Riverpod 2.0",
+          "last_pushed": "2025-04-10T18:05:39+00:00",
+          "relevance_to_jd": "unrelated",
+          "has_readme": false
+        }
+      ],
+      "audit_note": "Audited 19 repos."
+    },
+    "outreach_email_draft": "Dear Asif, we are impressed with your skills in AI, Machine Learning, and Langchain, and would like to invite you for an interview.",
+    "rejection_email_draft": "Dear Asif, thank you for applying, but we have decided to move forward with other candidates.",
+    "scoring_weights": {
+      "technical_skills": 33,
+      "programming_languages": 13,
+      "project_relevance": 20,
+      "years_experience": 7,
+      "github_quality": 13,
+      "education_certifications": 3,
+      "soft_skills": 11
+    },
+    "weight_rationale": "Given the junior seniority tier and skills-heavy role focus, I prioritized technical skills and programming languages. The requirement for GitHub and multiple must-have skills also led to a higher weight for github_quality and technical_skills. The emphasis on soft skills like problem-solving and communication resulted in a moderate weight for soft_skills.",
+    "score_cross_check_passed": true,
+    "calculated_score": 70,
+    "scoring_confidence": "medium"
   },
-  "5968b7a1f29ea1bb30ec916d37fef6ad1e27f88da2c6839e3b5c80fb92754ffa": {
-    "candidate_name": "Mujtaba Ahmed",
-    "email": "mujtabaahmed390@gmail.com",
-    "phone_no": "0318 0506673",
-    "university_name": "Szabist University Islamabad",
-    "cgpa": "",
-    "github_handle": "",
-    "years_of_experience": "0.5",
-    "match_score": 3,
-    "skill_matches": [
-      {
-        "skill_name": "Python programming",
-        "required": true,
-        "candidate_has": false,
-        "proficiency": 0,
-        "evidence": "No mention of Python programming",
-        "years": "Unknown"
-      },
-      {
-        "skill_name": "Agentic AI",
-        "required": true,
-        "candidate_has": false,
-        "proficiency": 0,
-        "evidence": "No mention of Agentic AI",
-        "years": "Unknown"
-      },
-      {
-        "skill_name": "AI frameworks and tools",
-        "required": true,
-        "candidate_has": false,
-        "proficiency": 0,
-        "evidence": "No mention of AI frameworks and tools",
-        "years": "Unknown"
-      },
-      {
-        "skill_name": "Cloud computing platforms",
-        "required": false,
-        "candidate_has": true,
-        "proficiency": 60,
-        "evidence": "Experience with AWS and Azure",
-        "years": "0.5"
-      },
-      {
-        "skill_name": "Machine Learning",
-        "required": false,
-        "candidate_has": true,
-        "proficiency": 60,
-        "evidence": "Final Year Project on Machine Learning",
-        "years": "0.5"
-      }
-    ],
-    "language_matches": [
-      {
-        "language": "English",
-        "jd_requires": false,
-        "candidate_has": true,
-        "proficiency": 90,
-        "evidence": "High Proficiency"
-      },
-      {
-        "language": "Urdu",
-        "jd_requires": false,
-        "candidate_has": true,
-        "proficiency": 100,
-        "evidence": "Native Language"
-      }
-    ],
-    "project_highlights": [
-      {
-        "project_name": "Final Year Project on Machine Learning",
-        "relevance_score": 60,
-        "tech_stack": [
-          "Machine Learning"
-        ],
-        "description": "Machine Learning project",
-        "source": "Resume",
-        "impact": "No impact information available"
-      },
-      {
-        "project_name": "Infrastructure Support Apprentice",
-        "relevance_score": 50,
-        "tech_stack": [
-          "Active Directory",
-          "Entra ID",
-          "Microsoft Intune"
-        ],
-        "description": "System Provisioning, Identity & Policy Management, Cloud Exposure, End-User Support",
-        "source": "Resume",
-        "impact": "No impact information available"
-      },
-      {
-        "project_name": "CCNA Training",
-        "relevance_score": 40,
-        "tech_stack": [
-          "Cisco CCNA"
-        ],
-        "description": "Foundational training in networking concepts",
-        "source": "Resume",
-        "impact": "No impact information available"
-      },
-      {
-        "project_name": "Solutions Architect Associate",
-        "relevance_score": 30,
-        "tech_stack": [
-          "AWS"
-        ],
-        "description": "Design and deploy scalable, cost-effective, and secure applications on AWS",
-        "source": "Resume",
-        "impact": "No impact information available"
-      },
-      {
-        "project_name": "Cloud Support Engineer",
-        "relevance_score": 20,
-        "tech_stack": [
-          "Active Directory",
-          "Entra ID",
-          "Microsoft Intune"
-        ],
-        "description": "Manage identities and device policies, perform backups, patching, and Software maintenance, troubleshoot end-user Issues",
-        "source": "Resume",
-        "impact": "No impact information available"
-      }
-    ],
-    "evaluation_scores": [
-      {
-        "category": "Technical Skills",
-        "score": 80,
-        "notes": "AWS Certified Solutions Architect, hands-on experience in infrastructure support"
-      },
-      {
-        "category": "Programming Languages",
-        "score": 0,
-        "notes": "No mention of Python programming"
-      },
-      {
-        "category": "Project Relevance",
-        "score": 60,
-        "notes": "Final Year Project on Machine Learning"
-      },
-      {
-        "category": "Experience Level",
-        "score": 20,
-        "notes": "0.5 years of experience"
-      },
-      {
-        "category": "Code Quality",
-        "score": 0,
-        "notes": "No code quality information available"
-      },
-      {
-        "category": "Learning & Growth",
-        "score": 70,
-        "notes": "Completed foundational training in networking concepts, CCNA training"
-      }
-    ],
-    "strengths": [],
-    "red_flags": [],
-    "cultural_fit_notes": "TECHNICAL SKILLS: 0/35 (no Python programming skills), PROGRAMMING LANGUAGES: 0/20 (no Python), PROJECT RELEVANCE: 0/20 (no AI/ML projects), EXPERIENCE: 3/15 (0.5 years, meets none of the experience requirements), GITHUB: 0/10 (not found). match_score = 3",
-    "github_summary": "",
-    "final_decision": "NO_MATCH",
-    "outreach_email_draft": "",
-    "rejection_email_draft": "Dear Mujtaba Ahmed, thank you for your interest in the position. However, after careful review, we regret to inform you that we will not be moving forward with your application at this time. Best regards."
-  },
-  "5c0ead4fb60226a0743538247258d9ef7c8312d121c0c65f229e639274c80b56": {
+  "dd4e35762a66b54eb634fd0bb165f8f963838abe8ada9f8b8bebbaf3544e7e17": {
     "candidate_name": "Asif Ali",
     "email": "asifaali1917@gmail.com",
     "phone_no": "+92-320-9842379",
     "university_name": "FAST National University of Computer and Emerging Sciences Islamabad, Pakistan",
     "cgpa": "3.07/4.0",
-    "github_handle": "aliasif767",
-    "years_of_experience": "0 years",
-    "match_score": 58,
+    "github_handle": "",
+    "linkedin_handle": "",
+    "years_of_experience": "1 year",
+    "seniority_tier": "mid",
+    "match_score": 80,
+    "final_decision": "MATCH",
     "skill_matches": [
       {
-        "skill_name": "JavaScript",
+        "skill_name": "Python",
+        "required": true,
+        "candidate_has": true,
+        "proficiency": 8,
+        "evidence": "AdInsight project, Agentic Online Exam Monitoring System project",
+        "years": "2-3 years",
+        "github_verified": false
+      },
+      {
+        "skill_name": "AI",
+        "required": true,
+        "candidate_has": true,
+        "proficiency": 9,
+        "evidence": "Agentic Online Exam Monitoring System project, AI-Powered Recruitment System project",
+        "years": "2-3 years",
+        "github_verified": false
+      },
+      {
+        "skill_name": "Machine Learning",
+        "required": true,
+        "candidate_has": true,
+        "proficiency": 8,
+        "evidence": "AdInsight project, Agentic Online Exam Monitoring System project",
+        "years": "2-3 years",
+        "github_verified": false
+      },
+      {
+        "skill_name": "LangChain",
+        "required": true,
+        "candidate_has": true,
+        "proficiency": 9,
+        "evidence": "Agentic Online Exam Monitoring System project, AI-Powered Recruitment System project",
+        "years": "2-3 years",
+        "github_verified": false
+      },
+      {
+        "skill_name": "LangGraph",
+        "required": true,
+        "candidate_has": true,
+        "proficiency": 9,
+        "evidence": "Agentic Online Exam Monitoring System project, AI-Powered Recruitment System project",
+        "years": "2-3 years",
+        "github_verified": false
+      },
+      {
+        "skill_name": "Agile/Scrum Development Methodologies",
         "required": true,
         "candidate_has": true,
         "proficiency": 6,
-        "evidence": "Resume (Technical Skills), GitHub (some repositories)",
-        "years": "1-2 years"
-      },
-      {
-        "skill_name": "MongoDB",
-        "required": true,
-        "candidate_has": true,
-        "proficiency": 5,
-        "evidence": "Resume (Technical Skills), GitHub (some repositories)",
-        "years": "1 year"
-      },
-      {
-        "skill_name": "Express.js",
-        "required": true,
-        "candidate_has": false,
-        "proficiency": 0,
-        "evidence": "None",
-        "years": "0 years"
-      },
-      {
-        "skill_name": "React.js",
-        "required": true,
-        "candidate_has": false,
-        "proficiency": 0,
-        "evidence": "None",
-        "years": "0 years"
-      },
-      {
-        "skill_name": "Node.js",
-        "required": true,
-        "candidate_has": false,
-        "proficiency": 0,
-        "evidence": "None",
-        "years": "0 years"
+        "evidence": "Experience as AI Engineer at MTBC CareCloud",
+        "years": "1-2 years",
+        "github_verified": false
       }
     ],
     "language_matches": [
       {
-        "language": "JavaScript",
-        "jd_requires": true,
-        "candidate_has": true,
-        "proficiency": 6,
-        "evidence": "Resume (Technical Skills), GitHub (some repositories)"
+        "language": "C++",
+        "jd_requires": false,
+        "candidate_has": false,
+        "proficiency": 5,
+        "evidence": "Technical Skills section",
+        "github_verified": false
       },
       {
         "language": "Python",
         "jd_requires": false,
-        "candidate_has": true,
+        "candidate_has": false,
         "proficiency": 8,
-        "evidence": "Resume (Technical Skills), GitHub (many repositories)"
+        "evidence": "AdInsight project, Agentic Online Exam Monitoring System project",
+        "github_verified": false
+      },
+      {
+        "language": "Dart",
+        "jd_requires": false,
+        "candidate_has": false,
+        "proficiency": 5,
+        "evidence": "Technical Skills section",
+        "github_verified": false
+      },
+      {
+        "language": "Go",
+        "jd_requires": false,
+        "candidate_has": false,
+        "proficiency": 5,
+        "evidence": "Technical Skills section",
+        "github_verified": false
+      },
+      {
+        "language": "JavaScript",
+        "jd_requires": false,
+        "candidate_has": false,
+        "proficiency": 6,
+        "evidence": "AdInsight project",
+        "github_verified": false
+      },
+      {
+        "language": "Java",
+        "jd_requires": false,
+        "candidate_has": false,
+        "proficiency": 5,
+        "evidence": "Technical Skills section",
+        "github_verified": false
       }
     ],
     "project_highlights": [
       {
         "project_name": "AdInsight",
         "relevance_score": 6,
+        "complexity_score": 7,
         "tech_stack": [
           "Python",
           "JS",
           "TensorFlow",
           "PostgreSQL"
         ],
-        "description": "A browser extension platform for video ad analysis",
+        "description": "Developed a browser extension platform for video ad analysis",
         "source": "Resume",
-        "impact": "Engagement tracking, demographic analysis, and object detection"
+        "impact": "",
+        "github_url": ""
       },
       {
-        "project_name": "Environmental Monitoring and Pollution Prediction",
-        "relevance_score": 4,
+        "project_name": "Agentic Online Exam Monitoring System",
+        "relevance_score": 9,
+        "complexity_score": 9,
         "tech_stack": [
           "Python",
-          "DVC",
-          "MLflow",
-          "FastAPI"
+          "LangGraph",
+          "LangChain",
+          "OpenCV",
+          "deepface",
+          "mediapipe"
         ],
-        "description": "A system for predicting weather trends and pollution levels",
+        "description": "Designed an end-to-end AI proctoring system",
         "source": "Resume",
-        "impact": "Real-time insights and predictions"
+        "impact": "",
+        "github_url": ""
+      },
+      {
+        "project_name": "AI-Powered Recruitment System (IARS)",
+        "relevance_score": 9,
+        "complexity_score": 8,
+        "tech_stack": [
+          "LangChain",
+          "LangGraph",
+          "FastAPI",
+          "React"
+        ],
+        "description": "Built an end-to-end Agentic AI hiring pipeline",
+        "source": "Resume",
+        "impact": "",
+        "github_url": ""
       },
       {
         "project_name": "Virtual AI Doctor",
-        "relevance_score": 5,
+        "relevance_score": 8,
+        "complexity_score": 8,
         "tech_stack": [
           "Langchain",
           "Langgraph",
-          "Openai API",
+          "Openai api",
           "Flask",
-          "FastAPI"
+          "Fast api"
         ],
-        "description": "A virtual AI doctor for patient symptom analysis and medical advice",
+        "description": "Developed a virtual AI doctor that interacts with patients",
         "source": "Resume",
-        "impact": "Accessible, automated, and responsive healthcare support"
-      },
-      {
-        "project_name": "AI-Recruitment-system",
-        "relevance_score": 3,
-        "tech_stack": [
-          "Python",
-          "Langchain",
-          "LangGraph"
-        ],
-        "description": "An AI-powered recruitment intelligence system",
-        "source": "GitHub",
-        "impact": "Automated resume screening and candidate outreach"
-      },
-      {
-        "project_name": "exam-cheating-detection",
-        "relevance_score": 3,
-        "tech_stack": [
-          "TypeScript"
-        ],
-        "description": "A system for detecting exam cheating",
-        "source": "GitHub",
-        "impact": "Improved exam security and integrity"
+        "impact": "",
+        "github_url": ""
       }
     ],
-    "evaluation_scores": [
+    "category_scores": [
       {
-        "category": "Technical Skills",
-        "score": 60,
-        "notes": "The candidate has a strong background in Python, TensorFlow, and PyTorch, but lacks experience in key areas like Express.js, React.js, and Node.js."
+        "category": "technical_skills",
+        "label": "Technical Skills",
+        "weight_used": 42,
+        "raw_score": 90.0,
+        "weighted_score": 37.8,
+        "evidence": ""
       },
       {
-        "category": "Programming Languages",
-        "score": 40,
-        "notes": "The candidate has experience with JavaScript, but not with other required languages like MongoDB, Express.js, React.js, and Node.js."
+        "category": "programming_languages",
+        "label": "Programming Languages",
+        "weight_used": 12,
+        "raw_score": 80.0,
+        "weighted_score": 9.6,
+        "evidence": ""
       },
       {
-        "category": "Project Relevance",
-        "score": 35,
-        "notes": "The candidate's projects are not directly related to MERN Stack, but some involve data analysis, prediction, and AI, which could be relevant."
+        "category": "project_relevance",
+        "label": "Project Relevance",
+        "weight_used": 17,
+        "raw_score": 90.0,
+        "weighted_score": 15.3,
+        "evidence": ""
       },
       {
-        "category": "Experience Level",
-        "score": 30,
-        "notes": "The candidate has around 1-2 years of experience, which is less than the expected 2-3 years for a MERN Stack developer."
+        "category": "years_experience",
+        "label": "Years of Experience",
+        "weight_used": 4,
+        "raw_score": 50.0,
+        "weighted_score": 2.0,
+        "evidence": ""
       },
       {
-        "category": "Code Quality",
-        "score": 50,
-        "notes": "The candidate's code quality is not directly assessable from the provided information."
+        "category": "github_quality",
+        "label": "GitHub Quality",
+        "weight_used": 17,
+        "raw_score": 0.0,
+        "weighted_score": 0.0,
+        "evidence": ""
       },
       {
-        "category": "Learning & Growth",
-        "score": 70,
-        "notes": "The candidate has a strong background in Python, TensorFlow, and PyTorch, and is likely to learn and grow in a MERN Stack role."
+        "category": "education_certifications",
+        "label": "Education & Certifications",
+        "weight_used": 0,
+        "raw_score": 60.0,
+        "weighted_score": 0.0,
+        "evidence": ""
+      },
+      {
+        "category": "soft_skills",
+        "label": "Soft Skills",
+        "weight_used": 8,
+        "raw_score": 70.0,
+        "weighted_score": 5.6,
+        "evidence": ""
       }
     ],
-    "strengths": [
-      "Strong background in Python and TensorFlow",
-      "Experience with JavaScript and MongoDB"
-    ],
-    "red_flags": [],
-    "cultural_fit_notes": "Technical Skills: 20/35, Programming Languages: 20/20, Project Relevance: 10/20, Years Experience: 3/15, GitHub Quality: 5/10, Total: 58/100",
-    "github_summary": "Username: aliasif767\nPublic Repos: 17\nFollowers: 0\nTotal Stars: 5\nTop Langs: Python(3), Unknown(3), Jupyter Notebook(2), TypeScript(1), HTML(1)\n\nREPOS:\nREPO: AI-Recruitment-system | LANG: Python | STARS: 1 | TOPICS: none | DESC: An AI-powered recruitment intelligence system that automates resume screening, performs GitHub technical audits, and handles candidate outreach using Langchain ,LangGraph and Groq\nREPO: aliasif767 | LANG: Unknown | STARS: 0 | TOPICS: none | DESC: N/A\nREPO: Automated-Book-Generation-System | LANG: Python | STARS: 1 | TOPICS: none | DESC: N/A\nREPO: Automated-Glaucoma-Detection-Using-Optic-Disc-and-Cup-Segmentation | LANG: Jupyter Notebook | STARS: 0 | TOPICS: none | DESC:  Developed an automated glaucoma detection system using CNNs and U-Nets to segment the optic disc and cup from  retinal fundus images. The system calculates the Cup-to-Disc Ratio (CDR) for early diagnosis, achieving high accuracy on  the ORIGA dataset. Performance was evaluated using metrics like precision, recall, and IoU\nREPO: Desibots | LANG: Python | STARS: 1 | TOPICS: none | DESC: N/A\nREPO: Email-spam-classifier | LANG: Jupyter Notebook | STARS: 0 | TOPICS: none | DESC: End to end code for the email spam classifier\nREPO: Environmental-Monitoring-and-Pollution-Prediction | LANG: Unknown | STARS: 0 | TOPICS: none | DESC:  Developed an Environmental Monitoring and Pollution Prediction System using Python, DVC, and MLflow. Implemented  ARIMA and LSTM models to forecast weather trends using real-time data from OpenWeatherMap API. Deployed the  predictive service with FastAPI for real-time insights\nREPO: exam-cheating-detection | LANG: TypeScript | STARS: 1 | TOPICS: none | DESC: N/A\nREPO: Food-order-app | LANG: Unknown | STARS: 0 | TOPICS: none | DESC: Food order app with flutter\nREPO: MedTranslate-Pro | LANG: HTML | STARS: 1 | TOPICS: none | DESC: N/A",
-    "final_decision": "MAYBE",
-    "outreach_email_draft": "Hello Asif, we came across your profile and were impressed with your skills in JavaScript and MongoDB. Although you don't have direct experience with MERN Stack, we believe you have the potential to learn and grow with our team. We'd like to invite you for an interview to discuss further.",
-    "rejection_email_draft": ""
-  },
-  "0e342677586a58a6b88f0c9fee6338a036813d7f7f8cfdffeab57edcf255dbbd": {
-    "candidate_name": "Asif Ali",
-    "email": "asifaali1917@gmail.com",
-    "phone_no": "+92-320-9842379",
-    "university_name": "FAST National University of Computer and Emerging Sciences Islamabad, Pakistan",
-    "cgpa": "3.07/4.0",
-    "github_handle": "aliasif767",
-    "years_of_experience": "1 year",
-    "match_score": 78,
-    "skill_matches": [],
-    "language_matches": [],
-    "project_highlights": [],
     "evaluation_scores": [],
     "strengths": [
-      "Machine learning expertise",
-      "Problem-solving skills",
-      "Communication skills"
+      "Strong proficiency in Python, AI, and machine learning",
+      "Experience with LangChain and LangGraph",
+      "Good understanding of software development and AI concepts"
     ],
     "red_flags": [],
-    "cultural_fit_notes": "Technical Skills: 28/35, Programming Languages: 20/20, Project Relevance: 15/20, Years Experience: 10/15, GitHub Quality: 5/10. Total: 78/100. MATCH",
-    "github_summary": "Username: aliasif767\nPublic Repos: 18\nFollowers: 0\nTotal Stars: 4\nTop Langs: Python(4), Unknown(3), Jupyter Notebook(2), TypeScript(1)\n\nREPOS:\nREPO: Advance-ai-recruitment-system | LANG: Python | STARS: 0 | TOPICS: none | DESC: N/A\nREPO: AI-Recruitment-system | LANG: Python | STARS: 1 | TOPICS: none | DESC: An AI-powered recruitment intelligence system that automates resume screening, performs GitHub technical audits, and handles candidate outreach using Langchain ,LangGraph and Groq\nREPO: aliasif767 | LANG: Unknown | STARS: 0 | TOPICS: none | DESC: N/A\nREPO: Automated-Book-Generation-System | LANG: Python | STARS: 1 | TOPICS: none | DESC: N/A\nREPO: Automated-Glaucoma-Detection-Using-Optic-Disc-and-Cup-Segmentation | LANG: Jupyter Notebook | STARS: 0 | TOPICS: none | DESC:  Developed an automated glaucoma detection system using CNNs and U-Nets to segment the optic disc and cup from  retinal fundus images. The system calculates the Cup-to-Disc Ratio (CDR) for early diagnosis, achieving high accuracy on  the ORIGA dataset. Performance was evaluated using metrics like precision, recall, and IoU\nREPO: Desibots | LANG: Python | STARS: 1 | TOPICS: none | DESC: N/A\nREPO: Email-spam-classifier | LANG: Jupyter Notebook | STARS: 0 | TOPICS: none | DESC: End to end code for the email spam classifier\nREPO: Environmental-Monitoring-and-Pollution-Prediction | LANG: Unknown | STARS: 0 | TOPICS: none | DESC:  Developed an Environmental Monitoring and Pollution Prediction System using Python, DVC, and MLflow. Implemented  ARIMA and LSTM models to forecast weather trends using real-time data from OpenWeatherMap API. Deployed the  predictive service with FastAPI for real-time insights\nREPO: exam-cheating-detection | LANG: TypeScript | STARS: 1 | TOPICS: none | DESC: N/A\nREPO: Food-order-app | LANG: Unknown | STARS: 0 | TOPICS: none | DESC: Food order app with flutter",
-    "final_decision": "MATCH",
-    "outreach_email_draft": "Dear Asif, we are impressed with your skills and experience and would like to invite you for an interview.",
-    "rejection_email_draft": ""
+    "cultural_fit_notes": "Technical Skills: raw_evidence \u2192 score 35.7/42, Programming Languages: raw_evidence \u2192 score 9.6/12, Project Relevance: raw_evidence \u2192 score 14.5/17, Years Experience: raw_evidence \u2192 score 3.2/4, GitHub Quality: raw_evidence \u2192 score 0/17, Education & Certifications: raw_evidence \u2192 score 0/0, Soft Skills: raw_evidence \u2192 score 6.4/8",
+    "github_summary": "No GitHub handle found in resume.\n\n=== CROSS-VALIDATOR SCORES ===\nRaw scores: {\"technical_skills\": 90.0, \"programming_languages\": 80.0, \"project_relevance\": 90.0, \"years_experience\": 50.0, \"github_quality\": 0.0, \"education_certifications\": 60.0, \"soft_skills\": 70.0}\nCalculated total: 70 | LLM proposed: 80 | Gap: 10 | Cross-check passed: True | Confidence: medium\nFINAL VALIDATED SCORE: 80",
+    "github_insights": {
+      "username": "",
+      "public_repos": 0,
+      "followers": 0,
+      "top_languages": [],
+      "activity_score": 0,
+      "relevance_score": 0,
+      "highly_relevant_repos": [],
+      "somewhat_relevant_repos": [],
+      "skill_evidence": {},
+      "total_stars": 0,
+      "total_forks": 0,
+      "has_relevant_projects": false,
+      "repos": [],
+      "audit_note": "No GitHub handle found in resume."
+    },
+    "outreach_email_draft": "Dear Asif, we are pleased to inform you that you have been selected to proceed to the interview/assessment stage for the Agentic AI Engineer position at Noorsultan IT Solution. We were impressed by your technical skills and experience in AI, machine learning, and LangChain/LangGraph. We would like to invite you for an interview to further discuss your qualifications. Please let us know your availability, and we will schedule a time that suits you. Best regards, [Your Name]",
+    "rejection_email_draft": "Dear Asif, thank you for applying for the Agentic AI Engineer position at Noorsultan IT Solution. After careful consideration, we regret to inform you that we will not be moving forward with your application at this time. Although you have a strong background in AI and machine learning, we are looking for candidates with more direct experience in Agile/Scrum development methodologies. We appreciate your interest in our company and wish you the best of luck in your job search. Best regards, [Your Name]",
+    "scoring_weights": {
+      "technical_skills": 42,
+      "programming_languages": 12,
+      "project_relevance": 17,
+      "years_experience": 4,
+      "github_quality": 17,
+      "education_certifications": 0,
+      "soft_skills": 8
+    },
+    "weight_rationale": "Given the junior seniority tier and skills-heavy role focus, I prioritized technical skills and programming languages. The requirement for GitHub and the mention of specific soft skills like problem-solving and communication also influenced my choices. I allocated lower weights to years of experience and education certifications due to the junior tier and lack of certification requirements.",
+    "score_cross_check_passed": true,
+    "calculated_score": 80,
+    "scoring_confidence": "medium"
   }
 }

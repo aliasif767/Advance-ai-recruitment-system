@@ -1,0 +1,45 @@
+# ── Python cache ──────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# ── Virtual environments ──────────────────────────────────────────
+venv/
+env/
+.venv/
+.env/
+
+# ── Local env files (secrets — never deploy) ──────────────────────
+backend/.env
+.env.local
+.env.development.local
+.env.test.local
+
+# ── CV uploads (runtime data, not part of build) ──────────────────
+backend/received_cvs/
+
+# ── Frontend node_modules (Vercel installs them fresh) ────────────
+frontend/iars-react/node_modules/
+
+# ── Test files ────────────────────────────────────────────────────
+test_*.py
+*.test.py
+
+# ── Git ───────────────────────────────────────────────────────────
+.git/
+.gitignore
+
+# ── Docker ────────────────────────────────────────────────────────
+Dockerfile
+docker-compose.yml
+
+# ── IDE ───────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+
+# ── OS ────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db

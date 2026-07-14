@@ -1,86 +1,132 @@
-# IARS — Full-Stack Intelligent Recruitment System
+<div align="center">
 
-End-to-end AI recruitment pipeline: FastAPI backend + MongoDB + interactive dashboard.
+# 🤖 IARS — Intelligent Agentic Recruitment System
+### *The Future of Autonomous Hiring*
 
-## Quick Start
+[![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Groq](https://img.shields.io/badge/Groq-f55036?style=for-the-badge&logo=groq&logoColor=white)](https://groq.com/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
-### 1. Install & configure
-```bash
-cd backend
-pip install -r requirements.txt
-cp .env.example .env
-# Edit .env — add GROQ_API_KEY and MONGO_URI at minimum
-```
+---
 
-### 2. Start MongoDB
-```bash
-# Option A: Docker
-docker run -d -p 27017:27017 --name iars_mongo mongo:7
+**IARS** (Intelligent Agentic Recruitment System) is a state-of-the-art, fully automated AI recruitment pipeline. By leveraging multi-agent systems and high-speed LLMs (Llama 3.3 70B via Groq), IARS acts as a 24/7 digital recruiter—monitoring inboxes, parsing resumes, and scoring candidates with unparalleled precision.
 
-# Option B: Local MongoDB
-mongod --dbpath ./data/db
-```
+[**Explore Docs**](http://localhost:8000/docs) • [**View Demo**](#screenshots) • [**Report Bug**](https://github.com/yourusername/iars/issues)
 
-### 3. Start API
-```bash
-cd backend
-uvicorn app.main:app --reload --port 8000
-# Docs: http://localhost:8000/docs
-```
+</div>
 
-### 4. Open Dashboard
-Open `frontend/dashboard.html` in your browser.
-> Make sure API is running at http://localhost:8000
+---
 
-### Full Docker Stack
-```bash
-make docker-up
-# API:      http://localhost:8000/docs
-# MongoDB:  localhost:27017
-# Mongo UI: http://localhost:8081
+## 🌟 Key Features
+
+- 🕵️ **Autonomous Email Watcher**: Continuously monitors recruitment inboxes (IMAP) to automatically capture and process incoming CVs every 30 seconds.
+- 🧠 **Agentic AI Pipeline**: Utilizes a 7-node LangGraph workflow to perform deep semantic analysis of resumes against dynamic job requirements.
+- 📊 **Intelligent Scoring**: Multi-dimensional candidate evaluation (Skills, Experience, Cultural Fit) with interactive ranking charts.
+- 📨 **Automated Outreach**: Integrated SMTP system for sending professional, context-aware emails to candidates (Interview invites or polite rejections).
+- 📱 **LinkedIn Integration**: Automated job description generation and one-click posting to professional networks.
+- ⚡ **Real-time Updates**: Live activity feed and dashboard updates powered by SSE (Server-Sent Events).
+- 🎨 **Premium Dashboard**: A sleek, dark-mode administrative interface with glassmorphism aesthetics and real-time funnel visualization.
+
+---
+
+## 🏗️ Architecture
+
+IARS follows a modern decoupled architecture designed for scale and speed:
+
+```mermaid
+graph TD
+    A[Recruiter Dashboard] <--> B(FastAPI Backend)
+    B <--> C[(MongoDB)]
+    B --> D{LangGraph Agentic Pipeline}
+    D --> E[Resume Parser]
+    D --> F[Candidate Scorer]
+    D --> G[JD Generator]
+    B --> H[Email Watcher Service]
+    H --> I[SMTP/IMAP]
+    B --> J[LinkedIn API]
 ```
 
 ---
 
-## Architecture
+## 🛠️ Technology Stack
 
+| Layer | Technology |
+|---|---|
+| **Backend** | FastAPI (Python), LangGraph, Groq (Llama 3.3 70B) |
+| **Database** | MongoDB |
+| **Frontend** | HTML5, CSS3 (Custom Design System), Vanilla JS, Chart.js |
+| **DevOps** | Docker, Docker Compose, Makefile |
+| **Integrations** | GitHub API, SMTP/IMAP, LinkedIn API |
+
+---
+
+## 🚀 Quick Start
+
+### 1. Prerequisites
+- Python 3.10+
+- MongoDB 7.0+ (Local or Docker)
+- Groq API Key
+
+### 2. Installation
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/iars-fullstack.git
+cd iars-fullstack
+
+# Setup Backend
+cd backend
+pip install -r requirements.txt
+cp .env.example .env
+# Edit .env and add your GROQ_API_KEY and MONGO_URI
 ```
-frontend/dashboard.html  ←→  FastAPI (port 8000)  ←→  MongoDB
-                                    │
-                          LangGraph 7-node scorer
-                          Groq LLM (Llama 3.3 70b)
-                          GitHub API / IMAP / SMTP / LinkedIn
+
+### 3. Running with Docker (Recommended)
+```bash
+make docker-up
+```
+*Access the API at `http://localhost:8000/docs` and Mongo UI at `http://localhost:8081`.*
+
+### 4. Manual Start
+```bash
+# Start Backend
+uvicorn app.main:app --reload --port 8000
+
+# Open Frontend
+# Simply open frontend/dashboard.html in your preferred browser
 ```
 
-## API Endpoints
+---
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/v1/stats/global` | Dashboard KPIs + chart data |
-| GET | `/api/v1/activity/` | Activity feed |
-| GET | `/api/v1/activity/stream` | SSE real-time stream |
-| POST | `/api/v1/jobs/` | Create job + auto-generate JD |
-| GET | `/api/v1/jobs/` | List all jobs |
-| POST | `/api/v1/jobs/{id}/post-linkedin` | Post JD to LinkedIn |
-| GET | `/api/v1/candidates/` | List candidates (filterable) |
-| POST | `/api/v1/candidates/score/file` | Upload CV + score |
-| POST | `/api/v1/candidates/score/text` | Score raw text |
-| POST | `/api/v1/candidates/{id}/send-email` | Send outreach/rejection email |
-| POST | `/api/v1/pipeline/run` | Run full pipeline for a job |
-| GET | `/api/v1/pipeline/runs` | Pipeline run history |
+## 📡 API Reference
 
-## MongoDB Collections
+| Method | Endpoint | Function |
+|:---:|---|---|
+| `GET` | `/api/v1/stats/global` | Global KPIs and chart data |
+| `POST` | `/api/v1/jobs/` | Create job + auto-generate JD |
+| `POST` | `/api/v1/candidates/score/file` | Upload and AI-score a resume |
+| `POST` | `/api/v1/pipeline/run` | Execute full pipeline for a role |
+| `GET` | `/api/v1/activity/stream` | SSE real-time activity stream |
 
-- `jobs` — job postings with AI-generated descriptions
-- `candidates` — scored candidates with full evaluation reports
-- `pipeline_runs` — pipeline execution history
-- `activity_feed` — real-time event log
-- `stats` — cached aggregate metrics
+---
 
-## Environment Variables
+## 🤝 Contributing
 
-See `backend/.env.example` for full list. Minimum required:
-```
-GROQ_API_KEY=...
-MONGO_URI=mongodb://localhost:27017
-```
+Contributions are welcome! If you have suggestions for new agents or dashboard improvements:
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+<div align="center">
+  <p>Built with ❤️ by the IARS Team</p>
+</div>
+
