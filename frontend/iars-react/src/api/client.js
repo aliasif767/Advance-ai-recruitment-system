@@ -14,7 +14,7 @@ import axios from 'axios';
  * The vite.config.js dev proxy also forwards /api/* → localhost:8000
  * so you can alternatively use just '/api/v1' as the base.
  */
-const BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
+const BASE = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:8000/api/v1' : '/api/v1');
 
 const api = axios.create({
   baseURL: BASE,
