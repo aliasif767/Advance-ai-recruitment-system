@@ -10,7 +10,10 @@ export default function Modal({ title, onClose, children, footer, size = 'md' })
     const prev = document.activeElement;
     // Focus first interactive element after mount
     setTimeout(() => firstFocusRef.current?.focus(), 50);
+    return () => { prev?.focus(); };
+  }, []);
 
+  useEffect(() => {
     const handler = (e) => {
       if (e.key === 'Escape') { onClose?.(); return; }
       // Trap focus inside modal
@@ -27,7 +30,7 @@ export default function Modal({ title, onClose, children, footer, size = 'md' })
       }
     };
     window.addEventListener('keydown', handler);
-    return () => { window.removeEventListener('keydown', handler); prev?.focus(); };
+    return () => { window.removeEventListener('keydown', handler); };
   }, [onClose]);
 
   return (
