@@ -1,7 +1,11 @@
 """
 backend/app/api/v1/endpoints/jobs.py
 Fixed: posts full detailed JD to LinkedIn, not a short one-liner.
+Fixed (Vercel): JD generation is wrapped in a 40s asyncio timeout so the
+job is always saved even when the LLM is slow, staying within the 60s
+Vercel serverless function limit.
 """
+import asyncio
 from fastapi import APIRouter, HTTPException, BackgroundTasks
 from pydantic import BaseModel
 from typing import Optional, List
@@ -47,7 +51,7 @@ async def create_job_endpoint(req: CreateJobRequest, background: BackgroundTasks
                 from app.models.schemas import JobRequirements
                 logger.info(f"Generating JD for: {req.title} @ {req.company}")
                 agent = JDGeneratorAgent()
-                jd = agent.generate(JobRequirements(
+                jd_req = JobRequirements(
                     job_title=req.title,
                     company_name=req.company,
                     key_requirements=req.requirements,
@@ -56,12 +60,20 @@ async def create_job_endpoint(req: CreateJobRequest, background: BackgroundTasks
                     experience_years=req.experience_years,
                     salary_range=req.salary_range,
                     employment_type=req.employment_type,
-                ))
+                )
+                # Run synchronous LLM call in a thread with a 40s timeout.
+                # This keeps total request time well within Vercel's 60s limit.
+                jd = await asyncio.wait_for(
+                    asyncio.to_thread(agent.generate, jd_req),
+                    timeout=40.0,
+                )
                 job_data["description"]       = jd.job_description
                 job_data["short_description"] = jd.short_description
                 job_data["required_skills"]   = jd.required_skills
                 job_data["nice_to_have"]      = jd.nice_to_have
                 logger.info(f"JD generated. LinkedIn post length: {len(jd.short_description)} chars")
+            except asyncio.TimeoutError:
+                logger.warning("JD generation timed out after 40s — using fallback description")
             except Exception as e:
                 logger.error(f"JD generation failed: {e}")
                 # Fallback: build a decent description manually instead of one-liner

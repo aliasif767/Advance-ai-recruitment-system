@@ -70,6 +70,10 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url="/redoc",
     lifespan=lifespan,
+    # Vercel can't follow internal 307 redirects from trailing-slash normalization,
+    # which causes 404s on routes like POST /api/v1/jobs/. Disabling lets FastAPI
+    # accept both /jobs and /jobs/ without redirecting.
+    redirect_slashes=False,
 )
 
 # ── CORS ──────────────────────────────────────────────────────────────────────

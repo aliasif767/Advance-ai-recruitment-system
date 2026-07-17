@@ -18,7 +18,7 @@ const BASE = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://loca
 
 const api = axios.create({
   baseURL: BASE,
-  timeout: 30000,
+  timeout: 90000,  // 90s — matches Vercel function maxDuration (60s) + buffer
 });
 
 api.interceptors.response.use(
@@ -35,7 +35,7 @@ export const getGlobalStats = () => api.get('/stats/global').then(r => r.data);
 // ── Jobs ───────────────────────────────────────────────────────────
 export const listJobs        = (status) => api.get('/jobs/', { params: { status } }).then(r => r.data);
 export const getJob          = (id)     => api.get(`/jobs/${id}`).then(r => r.data);
-export const createJob       = (data)   => api.post('/jobs/', data).then(r => r.data);
+export const createJob       = (data)   => api.post('/jobs/', data, { timeout: 90000 }).then(r => r.data);
 export const updateJob       = (id, d)  => api.patch(`/jobs/${id}`, d).then(r => r.data);
 export const deleteJob       = (id)     => api.delete(`/jobs/${id}`).then(r => r.data);
 export const toggleHiring    = (id)     => api.post(`/jobs/${id}/toggle-hiring`).then(r => r.data);
